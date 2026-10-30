@@ -39,8 +39,11 @@ textarea.fld{resize:vertical}
 @media (max-width:1000px){.svc5{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .logo .cut{display:inline-block;overflow:hidden;white-space:nowrap;vertical-align:top;transition:max-width .6s cubic-bezier(.65,0,.35,1)}
 .logo .w{display:inline-flex;align-items:flex-start}
-html{overflow-x:clip}
+html,body{overflow-x:clip;max-width:100%}
 @media (max-width:720px){
+footer.grid3{grid-template-columns:minmax(0,1fr);row-gap:6px}
+footer.grid3>div:nth-child(2){display:none}
+footer a{overflow-wrap:anywhere}
 header.grid3{grid-template-columns:auto minmax(0,1fr);row-gap:6px}
 header.grid3>nav{justify-self:end}
 header.grid3>div:last-child{grid-column:1 / -1}
