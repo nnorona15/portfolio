@@ -69,8 +69,8 @@ footer.grid3{padding:16px 16px calc(28px + env(safe-area-inset-bottom)) !importa
 .code{text-align:left}
 .lead{font-size:30px !important}
 .lead,.about .txt p{white-space:pre-line}
-.strip{height:auto !important}
-.strip img{height:auto !important;width:88% !important}
+.strip{height:calc((100vw - 32px) * 0.88 * 0.5625) !important}
+.strip img{height:100% !important;width:auto !important;max-width:none !important;background:transparent !important}
 .arr{width:40px !important;height:40px !important}
 }
 @media (max-width:380px){
