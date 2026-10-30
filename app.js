@@ -13,7 +13,7 @@ const comp = new Component({});
 const tpl = document.getElementById('tpl').content;
 const root = document.getElementById('root');
 
-const ONE = /^\s*\{\{([\s\S]+?)\}\}\s*$/;
+const ONE = /^\s*\{\{([^{}]+)\}\}\s*$/;
 const ANY = /\{\{([\s\S]+?)\}\}/g;
 
 function lookup(expr, scope) {
