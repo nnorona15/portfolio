@@ -44,9 +44,18 @@ html,body{overflow-x:clip;max-width:100%}
 footer.grid3{grid-template-columns:minmax(0,1fr);row-gap:6px}
 footer.grid3>div:nth-child(2){display:none}
 footer a{overflow-wrap:anywhere}
-header.grid3{grid-template-columns:auto minmax(0,1fr);row-gap:6px}
-header.grid3>nav{justify-self:end}
-header.grid3>div:last-child{grid-column:1 / -1}
+header.grid3{grid-template-columns:minmax(0,1fr) auto;row-gap:18px;padding:16px 16px 14px !important}
+header.grid3>div:first-child{grid-column:1 / -1}
+header.grid3{font-size:12.5px !important;letter-spacing:0 !important;column-gap:14px !important}
+header.grid3>nav{justify-self:start;gap:0 !important;flex-wrap:nowrap !important;white-space:nowrap}
+header.grid3>nav>span{margin-right:7px}
+header.grid3>div:last-child>div{gap:5px !important}
+header.grid3>div:last-child{justify-content:flex-end !important}
+.desk{display:none !important}
+.mob{display:inline !important}
+main{padding:0 16px !important}
+.home-sec{padding-top:64px !important}
+footer.grid3{padding:16px 16px calc(28px + env(safe-area-inset-bottom)) !important}
 .logo{font-size:17px !important}
 .about,.lists{grid-template-columns:minmax(0,1fr)}
 .about .txt{grid-column:auto}
@@ -61,22 +70,28 @@ header.grid3>div:last-child{grid-column:1 / -1}
 .strip img{height:auto !important;width:88% !important}
 .arr{width:40px !important;height:40px !important}
 }
+@media (max-width:380px){
+header.grid3{font-size:11.5px !important;column-gap:12px !important}
+header.grid3>nav>span{margin-right:5px}
+.lead{font-size:27px !important}
+}
 </style>
 
 </head>
 <body>
 <div id="root"></div>
 <template id="tpl">
-<div lang="{{lang}}" style="min-height: 100vh; display: flex; flex-direction: column; box-sizing: border-box; background: #ffffff; color: #1e1e1e; font-family: 'Inter Tight', 'Helvetica Neue', Arial, sans-serif; font-size: 21px; line-height: 29px">
+<div lang="{{lang}}" style="min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; box-sizing: border-box; background: #ffffff; color: #1e1e1e; font-family: 'Inter Tight', 'Helvetica Neue', Arial, sans-serif; font-size: 21px; line-height: 29px">
 
 <header class="grid3" style="position: sticky; top: 0; z-index: 5; padding: 12px; align-items: center; font-family: 'DM Mono', ui-monospace, monospace; font-size: 14px; line-height: 20px; background: rgba(255,255,255,0.88); backdrop-filter: blur(8px); text-transform: uppercase; letter-spacing: 0.02em">
 <div><button type="button" class="logo" onClick="{{goHome}}" aria-label="Noelia Orona" style="display: inline-flex; align-items: flex-start; gap: {{logoGap}}; font-family: 'Inter Tight', 'Helvetica Neue', Arial, sans-serif; font-weight: 400; font-size: 22px; line-height: 26px; text-transform: none; letter-spacing: -0.01em; white-space: nowrap; transition: gap .6s cubic-bezier(.65,0,.35,1)"><span class="w" aria-hidden="true"><span>N</span><span class="cut" style="max-width: {{restW}}">oelia</span><span class="cut" style="max-width: {{dotW}}">.</span></span><span class="w" aria-hidden="true"><span>O</span><span class="cut" style="max-width: {{restW}}">rona</span><span class="cut" style="max-width: {{dotW}}">.</span></span></button></div>
 <nav aria-label="{{t.navLabel}}" style="display: flex; flex-wrap: wrap; gap: 4px">
 <button type="button" onClick="{{goInfo}}" style="text-decoration: {{infoDeco}}">{{t.info}}</button><span aria-hidden="true">,</span>
-<button type="button" onClick="{{goWork}}" style="text-decoration: {{workDeco}}">{{t.work}}</button>
+<button type="button" onClick="{{goWork}}" style="text-decoration: {{workDeco}}">{{t.work}}</button><span class="mob" aria-hidden="true" style="display: none">,</span>
+<button type="button" class="mob" onClick="{{goContact}}" style="display: none; text-decoration: {{contactDeco}}">{{t.contact}}</button>
 </nav>
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px">
-<button type="button" onClick="{{goContact}}" style="text-decoration: {{contactDeco}}">{{t.contact}}</button>
+<button type="button" class="desk" onClick="{{goContact}}" style="text-decoration: {{contactDeco}}">{{t.contact}}</button>
 <div role="group" aria-label="Idioma / Language" style="display: flex; gap: 6px">
 <button type="button" onClick="{{setEs}}" aria-pressed="{{isEs}}" style="color: {{esColor}}; text-decoration: {{esDeco}}">Español</button>
 <span aria-hidden="true" style="color: #6b6b6b">/</span>
@@ -88,7 +103,7 @@ header.grid3>div:last-child{grid-column:1 / -1}
 <main style="flex: 1 1 auto; padding: 0 12px">
 
 <sc-if value="{{isHome}}" hint-placeholder-val="{{ true }}">
-<section style="padding-top: 112px">
+<section class="home-sec" style="padding-top: 112px">
 <h1 class="lead" style="margin: 0; max-width: 820px; font-family: 'Inter Tight', 'Helvetica Neue', Arial, sans-serif; font-weight: 700; font-size: 44px; line-height: 1.08; letter-spacing: -0.01em">{{t.lead}}</h1>
 </section>
 </sc-if>
