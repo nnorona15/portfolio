@@ -36,13 +36,15 @@ textarea.fld{resize:vertical}
 .send{align-self:flex-start;display:inline-flex;align-items:center;min-height:44px;padding:0 20px;background:#1e1e1e;color:#fff !important;font-family:'DM Mono',ui-monospace,monospace;font-size:14px;text-transform:uppercase;letter-spacing:0.02em}
 .send:hover{opacity:.8}
 .svc5{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));column-gap:16px;row-gap:28px;align-items:start}
-.infobtn{margin-left:18px;color:#1e1e1e;text-transform:uppercase;letter-spacing:0.02em;border-bottom:0.5px solid #1e1e1e;line-height:18px}
-.infocard{position:absolute;top:16px;left:16px;bottom:16px;width:min(440px,46%);box-sizing:border-box;overflow:auto;padding:26px 28px 22px;display:flex;flex-direction:column;gap:18px;background:rgba(246,245,241,0.86);-webkit-backdrop-filter:blur(7px) saturate(0.9);backdrop-filter:blur(7px) saturate(0.9);color:#1e1e1e;box-shadow:0 2px 24px rgba(0,0,0,0.10);transition:opacity .28s ease,transform .28s ease,visibility .28s;z-index:3;scrollbar-width:none}
+.infobtn{margin-left:0;color:#1e1e1e;text-transform:uppercase;letter-spacing:0.02em;border-bottom:0.5px solid #1e1e1e;line-height:18px}
+.infocard{position:absolute;top:16px;left:16px;bottom:auto;max-height:calc(100% - 32px);width:min(440px,46%);box-sizing:border-box;overflow:auto;padding:26px 28px 28px;display:flex;flex-direction:column;gap:18px;background:rgba(246,245,241,0.86);-webkit-backdrop-filter:blur(7px) saturate(0.9);backdrop-filter:blur(7px) saturate(0.9);color:#1e1e1e;box-shadow:0 2px 24px rgba(0,0,0,0.10);transition:opacity .28s ease,transform .28s ease,visibility .28s;z-index:3;scrollbar-width:none}
 .infocard::-webkit-scrollbar{display:none}
-.ic-head{display:flex;justify-content:space-between;gap:16px;font-family:'DM Mono',ui-monospace,monospace;font-size:13px;line-height:18px;text-transform:uppercase;letter-spacing:0.02em}
-.ic-lab{font-family:'DM Mono',ui-monospace,monospace;font-size:12px;line-height:16px;text-transform:uppercase;letter-spacing:0.04em;color:#6b6b6b;margin-bottom:6px}
-.ic-sec p{margin:0;font-size:15px;line-height:20px;font-weight:500;text-transform:uppercase;letter-spacing:0.005em;text-wrap:pretty}
-.ic-foot{margin-top:auto;font-family:'DM Mono',ui-monospace,monospace;font-size:12px;color:#6b6b6b}
+.ic-num{font-family:'Inter Tight','Helvetica Neue',Arial,sans-serif;font-weight:300;font-size:64px;line-height:0.9;letter-spacing:-0.03em}
+.ic-top{display:flex;flex-direction:column;gap:8px;padding-bottom:18px;border-bottom:0.5px solid rgba(30,30,30,0.35)}
+.ic-name{font-weight:700;font-size:20px;line-height:1.1;text-transform:uppercase}
+.ic-client{margin:0;font-size:15px;line-height:21px;text-wrap:pretty}
+.ic-lab{font-family:'DM Mono',ui-monospace,monospace;font-size:11px;line-height:14px;text-transform:uppercase;letter-spacing:0.06em;color:#6b6b6b;margin-bottom:6px}
+.ic-sec p{margin:0;font-size:14px;line-height:20px;color:#2a2a2a;text-wrap:pretty}
 @media (max-width:1000px){.svc5{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .logo .cut{display:inline-block;overflow:hidden;white-space:nowrap;vertical-align:top;transition:max-width .6s cubic-bezier(.65,0,.35,1)}
 .logo .w{display:inline-flex;align-items:flex-start}
@@ -80,6 +82,8 @@ footer.grid3{padding:16px 16px calc(28px + env(safe-area-inset-bottom)) !importa
 .strip img{height:100% !important;width:auto !important;max-width:none !important;background:transparent !important}
 .arr{width:40px !important;height:40px !important}
 .infocard{position:fixed;top:auto;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));width:auto;max-height:72svh;padding:22px 20px 18px;gap:14px;z-index:20;background:rgba(244,243,239,0.92)}
+.ic-num{font-size:48px}
+.count{flex-direction:row !important;align-items:center !important;justify-content:flex-start !important;gap:18px !important}
 .ic-sec p{font-size:14px;line-height:19px}
 }
 @media (max-width:380px){
@@ -135,11 +139,10 @@ header.grid3{font-size:11.5px !important;column-gap:12px !important}
 </sc-if>
 <button type="button" class="arr" onClick="{{p.next}}" aria-label="{{t.nextImg}}" style="right: 16px">→</button>
 <div class="infocard" role="dialog" aria-label="{{p.title}}" onClick="{{p.closeInfo}}" onPointerEnter="{{p.showInfo}}" onPointerLeave="{{p.hideInfo}}" style="opacity: {{p.infoOp}}; transform: {{p.infoTr}}; visibility: {{p.infoVis}}">
-<div class="ic-head"><span>{{p.code3}}</span><span>{{p.title}}</span></div>
-<div class="ic-sec"><div class="ic-lab">{{t.client}}</div><p>{{p.info.client}}</p></div>
+<div class="ic-num">{{p.code3}}</div>
+<div class="ic-top"><div class="ic-name">{{p.title}}</div><p class="ic-client">{{p.info.client}}</p></div>
 <div class="ic-sec"><div class="ic-lab">{{t.challenge}}</div><p>{{p.info.challenge}}</p></div>
 <div class="ic-sec"><div class="ic-lab">{{t.solution}}</div><p>{{p.info.solution}}</p></div>
-<div class="ic-foot">by Noelia Orona</div>
 </div>
 </div>
 <div class="info" style="font-size: 21px">
@@ -150,8 +153,8 @@ header.grid3{font-size:11.5px !important;column-gap:12px !important}
 <div>{{t.categories}}: {{p.categories}}</div>
 <sc-if value="{{p.hasYear}}" hint-placeholder-val="{{ false }}"><div>{{t.year}}: {{p.year}}</div></sc-if>
 </div>
-<div class="count" style="display: flex; gap: 4px; font-family: 'DM Mono', ui-monospace, monospace; font-size: 14px; line-height: 23px; color: #767676">
-<button type="button" onClick="{{p.prev}}" aria-label="{{t.prevImg}}">&lt;</button><span>{{p.counter}}</span><button type="button" onClick="{{p.next}}" aria-label="{{t.nextImg}}">&gt;</button>
+<div class="count" style="display: flex; flex-direction: column; justify-content: space-between; align-self: stretch; align-items: flex-start; gap: 4px; font-family: 'DM Mono', ui-monospace, monospace; font-size: 14px; line-height: 23px; color: #767676">
+<div style="display: flex; gap: 4px"><button type="button" onClick="{{p.prev}}" aria-label="{{t.prevImg}}">&lt;</button><span>{{p.counter}}</span><button type="button" onClick="{{p.next}}" aria-label="{{t.nextImg}}">&gt;</button></div>
 <button type="button" class="infobtn" onClick="{{p.toggleInfo}}" onPointerEnter="{{p.showInfo}}" onPointerLeave="{{p.hideInfo}}" aria-expanded="{{p.infoAria}}">{{t.more}}<span aria-hidden="true" style="margin-left: 6px">{{p.infoSign}}</span></button>
 </div>
 </div>
