@@ -634,7 +634,19 @@ class Component extends DCLogic {
         infoSign: infoOn ? '−' : '+',
         showInfo: function (e) { if (e && e.pointerType && e.pointerType !== 'mouse') return; clearTimeout(self._infoT); if (self.state.info !== i) self.setState({ info: i }); },
         hideInfo: function (e) { if (e && e.pointerType && e.pointerType !== 'mouse') return; clearTimeout(self._infoT); self._infoT = setTimeout(function () { if (self.state.info === i) self.setState({ info: null }); }, 220); },
-        toggleInfo: function () { clearTimeout(self._infoT); self.setState({ info: self.state.info === i ? null : i }); },
+        toggleInfo: function () {
+          clearTimeout(self._infoT);
+          var open = self.state.info !== i;
+          try { if (self._infoScroll) { window.removeEventListener('scroll', self._infoScroll); self._infoScroll = null; } } catch (e) {}
+          if (open) {
+            try {
+              var y0 = window.scrollY;
+              self._infoScroll = function () { if (Math.abs(window.scrollY - y0) > 12) { window.removeEventListener('scroll', self._infoScroll); self._infoScroll = null; self.setState({ info: null }); } };
+              window.addEventListener('scroll', self._infoScroll, { passive: true });
+            } catch (e) {}
+          }
+          self.setState({ info: open ? i : null });
+        },
         closeInfo: function () { clearTimeout(self._infoT); self.setState({ info: null }); },
         showPrev: cur > 0,
         onScroll: onScroll,
