@@ -37,14 +37,14 @@ textarea.fld{resize:vertical}
 .send:hover{opacity:.8}
 .svc5{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));column-gap:16px;row-gap:28px;align-items:start}
 .infobtn{margin-left:0;line-height:20px !important;color:#1e1e1e;text-transform:uppercase;letter-spacing:0.02em;border-bottom:0.5px solid #1e1e1e;line-height:18px}
-.infocard{position:absolute;top:16px;left:16px;bottom:16px;width:min(560px,52%);box-sizing:border-box;overflow:auto;padding:22px 26px 26px;display:flex;flex-direction:column;justify-content:space-between;gap:28px;border-radius:6px;background:linear-gradient(180deg,rgba(28,28,26,0.22),rgba(28,28,26,0.48));-webkit-backdrop-filter:blur(22px) saturate(1.05);backdrop-filter:blur(22px) saturate(1.05);color:#fff;transition:opacity .3s ease,transform .3s ease,visibility .3s;z-index:3;scrollbar-width:none}
+.infocard{position:absolute;top:16px;left:16px;bottom:auto;max-height:calc(100% - 32px);width:min(480px,46%);box-sizing:border-box;overflow:auto;padding:22px 24px 24px;display:flex;flex-direction:column;gap:20px;border-radius:8px;background:rgba(32,32,30,0.78);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);color:#fff;transition:opacity .3s ease,transform .3s ease,visibility .3s;z-index:3;scrollbar-width:none}
 .infocard::-webkit-scrollbar{display:none}
-.ic-label{display:flex;justify-content:space-between;gap:16px;font-family:'DM Mono',ui-monospace,monospace;font-size:11px;line-height:14px;text-transform:uppercase;letter-spacing:0.06em;color:rgba(255,255,255,0.85)}
-.ic-body{display:flex;flex-direction:column;gap:22px}
-.ic-client{margin:0;font-size:24px;line-height:29px;letter-spacing:-0.01em;font-weight:400;text-wrap:pretty}
-.ic-cols{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.ic-lab{font-family:'DM Mono',ui-monospace,monospace;font-size:10.5px;line-height:14px;text-transform:uppercase;letter-spacing:0.06em;color:rgba(255,255,255,0.7);margin-bottom:6px}
-.ic-sec p{margin:0;font-size:13.5px;line-height:19px;color:rgba(255,255,255,0.92);text-wrap:pretty}
+.ic-label{display:flex;justify-content:space-between;gap:16px;font-family:'DM Mono',ui-monospace,monospace;font-size:12.5px;line-height:16px;text-transform:uppercase;letter-spacing:0.06em;color:rgba(255,255,255,0.85)}
+.ic-body{display:flex;flex-direction:column;gap:20px}
+.ic-client{margin:0;font-size:22px;line-height:28px;letter-spacing:-0.01em;font-weight:400;text-wrap:pretty}
+.ic-cols{display:flex;flex-direction:column;gap:16px}
+.ic-lab{font-family:'DM Mono',ui-monospace,monospace;font-size:11.5px;line-height:14px;text-transform:uppercase;letter-spacing:0.06em;color:rgba(255,255,255,0.7);margin-bottom:6px}
+.ic-sec p{margin:0;font-size:15px;line-height:21px;color:rgba(255,255,255,0.92);text-wrap:pretty}
 @media (max-width:1000px){.svc5{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .logo .cut{display:inline-block;overflow:hidden;white-space:nowrap;vertical-align:top;transition:max-width .6s cubic-bezier(.65,0,.35,1)}
 .logo .w{display:inline-flex;align-items:flex-start}
@@ -329,6 +329,7 @@ class Component extends DCLogic {
       }
     };
     var nb = function (s) { return typeof s === 'string' ? s.replace(/(^|[\s\u00a0(])([A-Za-zÁÉÍÓÚáéíóú]) /g, '$1$2\u00a0') : s; };
+    var nb3 = function (s) { return typeof s === 'string' ? s.replace(/(^|[\s\u00a0(«—])([A-Za-zÁÉÍÓÚáéíóúÑñ]{1,3}) /g, '$1$2\u00a0').replace(/(^|[\s\u00a0(«—])([A-Za-zÁÉÍÓÚáéíóúÑñ]{1,3}) /g, '$1$2\u00a0') : s; };
     Object.keys(T[lang]).forEach(function (k) { T[lang][k] = nb(T[lang][k]); });
     var t = Object.assign({}, T[lang], { servicesAll: T[lang].servicesList.map(function (g) { return Object.assign({}, g, { nn: '0' + g.n }); }) });
     var f = this.state.form || { name: '', email: '', type: '', budget: '', message: '' };
@@ -625,7 +626,7 @@ class Component extends DCLogic {
         images: d.images.map(function (src, k) { var v = /^video:/.test(src); var s = v ? src.slice(6) : src; return { src: s, isVideo: v, isImg: !v, alt: d.title + ' — ' + t.image + ' ' + (k + 1), loading: k < 3 ? 'eager' : 'lazy' }; }),
         counter: (cur + 1) + '/' + count,
         code3: num,
-        info: (function () { var o = d.info ? d.info[lang] : { client: '', challenge: '', solution: '' }; return { client: nb(o.client), challenge: nb(o.challenge), solution: nb(o.solution) }; })(),
+        info: (function () { var o = d.info ? d.info[lang] : { client: '', challenge: '', solution: '' }; return { client: nb3(o.client), challenge: nb3(o.challenge), solution: nb3(o.solution) }; })(),
         infoOp: infoOn ? '1' : '0',
         infoTr: infoOn ? 'translateY(0)' : 'translateY(8px)',
         infoVis: infoOn ? 'visible' : 'hidden',
