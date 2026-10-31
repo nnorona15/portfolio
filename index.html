@@ -70,7 +70,8 @@ footer.grid3{padding:16px 16px calc(28px + env(safe-area-inset-bottom)) !importa
 .logo{font-size:17px !important}
 .about,.lists{grid-template-columns:minmax(0,1fr)}
 .about .txt{grid-column:auto}
-.contact{grid-template-columns:minmax(0,1fr)}
+.contact{grid-template-columns:minmax(0,1fr);row-gap:64px !important}
+.cleft{gap:24px !important}
 .contact .cform{grid-column:auto;margin-left:0;max-width:none}
 .svc5{grid-template-columns:repeat(2,minmax(0,1fr))}
 .info{grid-template-columns:auto minmax(0,1fr);row-gap:8px}
@@ -200,7 +201,7 @@ header.grid3{font-size:11.5px !important;column-gap:12px !important}
 <sc-if value="{{isContact}}" hint-placeholder-val="{{ false }}">
 <section style="padding: 56px 0 64px">
 <div class="contact">
-<div style="display: flex; flex-direction: column; gap: 80px">
+<div class="cleft" style="display: flex; flex-direction: column; gap: 51px">
 <p style="margin: 0; text-wrap: pretty">{{t.contactIntro}}</p>
 <div style="display: flex; flex-direction: column; gap: 4px; font-family: 'DM Mono', ui-monospace, monospace; font-size: 14px; line-height: 20px; text-transform: uppercase; letter-spacing: 0.02em">
 <a href="mailto:nnorona15@gmail.com">→ nnorona15@gmail.com</a>
@@ -289,8 +290,8 @@ class Component extends DCLogic {
         ],
         clients: 'Clientes', clientsList: ['[Cliente 1]', '[Cliente 2]', '[Cliente 3]'],
         contactLead: 'Para proyectos, colaboraciones o simplemente saludar: nnorona15@gmail.com',
-        contactIntro: 'Si tenés una idea en mente, querés conversar sobre un proyecto o simplemente pasar a saludar, mi inbox está abierto.',
-        formTitle: 'Contame de tu proyecto',
+        contactIntro: 'Si tenés una idea en mente, querés conversar sobre un proyecto o tenés alguna consulta, mi inbox está abierto.',
+        formTitle: 'Contame tu proyecto',
         formNote: '* Obligatorio · Respondo en 2–3 días hábiles',
         fName: 'Nombre', fEmail: 'Email', fType: 'Tipo de proyecto', fTypePh: 'Elegí una opción',
         fBudget: 'Presupuesto estimado', fBudgetPh: 'Ej.: USD 1.500', fMessage: 'Mensaje', fMessagePh: '¿Qué tenés en mente?',
@@ -317,7 +318,7 @@ class Component extends DCLogic {
         ],
         clients: 'Clients', clientsList: ['[Client 1]', '[Client 2]', '[Client 3]'],
         contactLead: 'For projects, collaborations or just to say hello: nnorona15@gmail.com',
-        contactIntro: 'Whether you have an idea in mind, want to talk about a project or just want to say hello, my inbox is open.',
+        contactIntro: 'Whether you have an idea in mind, want to talk about a project or have any questions, my inbox is open.',
         formTitle: 'Tell me about your project',
         formNote: '* Required · I reply within 2–3 working days',
         fName: 'Name', fEmail: 'Email address', fType: 'Project type', fTypePh: 'Select one',
