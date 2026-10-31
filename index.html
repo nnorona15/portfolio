@@ -36,6 +36,13 @@ textarea.fld{resize:vertical}
 .send{align-self:flex-start;display:inline-flex;align-items:center;min-height:44px;padding:0 20px;background:#1e1e1e;color:#fff !important;font-family:'DM Mono',ui-monospace,monospace;font-size:14px;text-transform:uppercase;letter-spacing:0.02em}
 .send:hover{opacity:.8}
 .svc5{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));column-gap:16px;row-gap:28px;align-items:start}
+.infobtn{margin-left:18px;color:#1e1e1e;text-transform:uppercase;letter-spacing:0.02em;border-bottom:0.5px solid #1e1e1e;line-height:18px}
+.infocard{position:absolute;top:16px;left:16px;bottom:16px;width:min(440px,46%);box-sizing:border-box;overflow:auto;padding:26px 28px 22px;display:flex;flex-direction:column;gap:18px;background:rgba(246,245,241,0.86);-webkit-backdrop-filter:blur(7px) saturate(0.9);backdrop-filter:blur(7px) saturate(0.9);color:#1e1e1e;box-shadow:0 2px 24px rgba(0,0,0,0.10);transition:opacity .28s ease,transform .28s ease,visibility .28s;z-index:3;scrollbar-width:none}
+.infocard::-webkit-scrollbar{display:none}
+.ic-head{display:flex;justify-content:space-between;gap:16px;font-family:'DM Mono',ui-monospace,monospace;font-size:13px;line-height:18px;text-transform:uppercase;letter-spacing:0.02em}
+.ic-lab{font-family:'DM Mono',ui-monospace,monospace;font-size:12px;line-height:16px;text-transform:uppercase;letter-spacing:0.04em;color:#6b6b6b;margin-bottom:6px}
+.ic-sec p{margin:0;font-size:15px;line-height:20px;font-weight:500;text-transform:uppercase;letter-spacing:0.005em;text-wrap:pretty}
+.ic-foot{margin-top:auto;font-family:'DM Mono',ui-monospace,monospace;font-size:12px;color:#6b6b6b}
 @media (max-width:1000px){.svc5{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .logo .cut{display:inline-block;overflow:hidden;white-space:nowrap;vertical-align:top;transition:max-width .6s cubic-bezier(.65,0,.35,1)}
 .logo .w{display:inline-flex;align-items:flex-start}
@@ -72,6 +79,8 @@ footer.grid3{padding:16px 16px calc(28px + env(safe-area-inset-bottom)) !importa
 .strip{height:calc((100vw - 32px) * 0.88 * 0.5625) !important}
 .strip img{height:100% !important;width:auto !important;max-width:none !important;background:transparent !important}
 .arr{width:40px !important;height:40px !important}
+.infocard{position:fixed;top:auto;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));width:auto;max-height:72svh;padding:22px 20px 18px;gap:14px;z-index:20;background:rgba(244,243,239,0.92)}
+.ic-sec p{font-size:14px;line-height:19px}
 }
 @media (max-width:380px){
 header.grid3{font-size:11.5px !important;column-gap:12px !important}
@@ -125,6 +134,13 @@ header.grid3{font-size:11.5px !important;column-gap:12px !important}
 <button type="button" class="arr" onClick="{{p.prev}}" aria-label="{{t.prevImg}}" style="left: 16px">←</button>
 </sc-if>
 <button type="button" class="arr" onClick="{{p.next}}" aria-label="{{t.nextImg}}" style="right: 16px">→</button>
+<div class="infocard" role="dialog" aria-label="{{p.title}}" onClick="{{p.closeInfo}}" onPointerEnter="{{p.showInfo}}" onPointerLeave="{{p.hideInfo}}" style="opacity: {{p.infoOp}}; transform: {{p.infoTr}}; visibility: {{p.infoVis}}">
+<div class="ic-head"><span>{{p.code3}}</span><span>{{p.title}}</span></div>
+<div class="ic-sec"><div class="ic-lab">{{t.client}}</div><p>{{p.info.client}}</p></div>
+<div class="ic-sec"><div class="ic-lab">{{t.challenge}}</div><p>{{p.info.challenge}}</p></div>
+<div class="ic-sec"><div class="ic-lab">{{t.solution}}</div><p>{{p.info.solution}}</p></div>
+<div class="ic-foot">by Noelia Orona</div>
+</div>
 </div>
 <div class="info" style="font-size: 21px">
 <div class="code" style="font-family: 'DM Mono', ui-monospace, monospace; font-size: 14px; line-height: 23px; color: #767676">{{p.code}}</div>
@@ -136,6 +152,7 @@ header.grid3{font-size:11.5px !important;column-gap:12px !important}
 </div>
 <div class="count" style="display: flex; gap: 4px; font-family: 'DM Mono', ui-monospace, monospace; font-size: 14px; line-height: 23px; color: #767676">
 <button type="button" onClick="{{p.prev}}" aria-label="{{t.prevImg}}">&lt;</button><span>{{p.counter}}</span><button type="button" onClick="{{p.next}}" aria-label="{{t.nextImg}}">&gt;</button>
+<button type="button" class="infobtn" onClick="{{p.toggleInfo}}" onPointerEnter="{{p.showInfo}}" onPointerLeave="{{p.hideInfo}}" aria-expanded="{{p.infoAria}}">{{t.more}}<span aria-hidden="true" style="margin-left: 6px">{{p.infoSign}}</span></button>
 </div>
 </div>
 </article>
@@ -250,7 +267,7 @@ class Component extends DCLogic {
       es: {
         navLabel: 'Principal', info: 'Sobre mí', work: 'Proyectos', contact: 'Contacto',
         lead: 'Diseñadora con más de 5 años de experiencia\n—\u00a0enfocada en desarrollar identidades y experiencias visuales que combinan concepto, sensibilidad y una mirada contemporánea.',
-        industry: 'Rubro', categories: 'Categorías', year: 'Año', image: 'Imagen',
+        industry: 'Rubro', categories: 'Categorías', more: 'Info', client: 'Cliente', challenge: 'Desafío', solution: 'Solución', year: 'Año', image: 'Imagen',
         nextImg: 'Imagen siguiente', prevImg: 'Imagen anterior',
         about1: 'Mi nombre es Noelia Orona. Diseñadora\u00a0con\u00a0base en Argentina, con más de 5 años de experiencia\n—\u00a0enfocada en desarrollar identidades y experiencias visuales que combinan concepto, sensibilidad y una mirada contemporánea.', about2: 'Trabajo desde un enfoque estratégico y conceptual, combinando investigación, criterio visual y comprensión de los objetivos de comunicación para desarrollar soluciones claras, coherentes y relevantes.',
         photoAlt: 'Retrato de Noelia Orona',
@@ -278,7 +295,7 @@ class Component extends DCLogic {
       en: {
         navLabel: 'Main', info: 'About me', work: 'Projects', contact: 'Contact',
         lead: 'Designer with over 5 years of experience\n—\u00a0focused on developing identities and visual experiences that combine concept, sensitivity and a contemporary eye.',
-        industry: 'Industry', categories: 'Categories', year: 'Year', image: 'Image',
+        industry: 'Industry', categories: 'Categories', more: 'Info', client: 'Client', challenge: 'Challenge', solution: 'Solution', year: 'Year', image: 'Image',
         nextImg: 'Next image', prevImg: 'Previous image',
         about1: 'My name is Noelia Orona. Designer\u00a0based\u00a0in Argentina, with over 5 years of experience\n—\u00a0focused on developing identities and visual experiences that combine concept, sensitivity and a contemporary eye.', about2: 'I work from a strategic and conceptual approach, combining research, visual judgment and an understanding of communication goals to develop clear, coherent and relevant solutions.',
         photoAlt: 'Portrait of Noelia Orona',
@@ -326,6 +343,7 @@ class Component extends DCLogic {
         industry: { es: 'Hospitality', en: 'Hospitality' },
         categories: { es: 'Estrategia de marca, Identidad visual, Packaging', en: 'Brand Strategy, Visual Identity, Packaging' },
         year: '',
+        info: { es: { client: 'Hotel boutique en Mazatlán, México, pensado para viajeros que buscan calma, intimidad y criterio.', challenge: 'Diferenciarse en un destino de playa dominado por la estética resort, con un lujo que no se anuncia: se percibe en la luz, los materiales y el trato.', solution: 'Una identidad serena y editorial —«El Pacífico, en voz baja»— con un símbolo que une mar y tierra en un solo gesto, una paleta de piedra y oliva, y un sistema que llega a papelería, amenities, packaging y web.' }, en: { client: 'A boutique hotel in Mazatlán, Mexico, designed for travellers looking for calm, intimacy and good taste.', challenge: 'Standing out in a beach destination dominated by resort aesthetics, with a kind of luxury that is never announced: it is felt in the light, the materials and the service.', solution: 'A serene, editorial identity —“The Pacific, softly spoken”— built on a symbol that joins sea and land in a single gesture, a stone and olive palette, and a system that reaches stationery, amenities, packaging and web.' } },
         images: [
           'assets/b8b4ae4f4f5b2dd15c951b94e72a53cc.jpg', 'assets/5c3d695843c229afa5152d5f636bd044.jpg', 'assets/e2960cda418a0b294daa85c6e2042779.jpg', 'assets/57ccf7958567f97fcff70dec4a059a22.jpg',
           'assets/97191169b83fd5ee03ff9fd80f868fdf.jpg', 'assets/f95d21161248a00e6fc97386bfa6b6cc.jpg', 'assets/f0bfe52ba8fa4f3fd754cfe8c55f5483.jpg',
@@ -341,6 +359,7 @@ class Component extends DCLogic {
         industry: { es: 'Mobility', en: 'Mobility' },
         categories: { es: 'Estrategia de marca, Identidad visual, Web', en: 'Brand Strategy, Visual Identity, Web' },
         year: '',
+        info: { es: { client: 'Empresa de alquiler de autos para conductores que trabajan con aplicaciones de movilidad.', challenge: 'Transmitir confianza y respaldo en un rubro asociado a la informalidad, y hablarle directo a quien usa el auto como su herramienta de trabajo.', solution: 'Una marca clara y en movimiento: un símbolo que expresa encuentro y dirección, paleta petróleo y naranja, y piezas de vía pública, flyers y web con mensajes simples como «Conducí tranquilo. Lo demás es SPM».' }, en: { client: 'A car rental company for drivers who work with ride-hailing apps.', challenge: 'Conveying trust and support in a sector associated with informality, and speaking directly to people who use the car as their work tool.', solution: 'A clear brand in motion: a symbol that expresses meeting and direction, a petrol and orange palette, and outdoor, print and web pieces with simple messages like “Drive easy. Leave the rest to SPM”.' } },
         images: [
           'assets/797223eec2d62e50f2ecf043076c8a44.jpg', 'assets/227df9ba04223a7a66a60ef959f72512.jpg', 'assets/0e000e5705f6b584fe10678b986d4f69.jpg', 'assets/73c0fb4b4de78de4e1cd3dbaccbfd269.jpg', 'assets/b99051d33619d1b2485420587901f481.jpg',
           'assets/e3d7bab79c8a9d429f74df7a888d9c3b.jpg', 'assets/7d3b6d5653104ea772bdec44c0dccbbf.jpg', 'assets/6f907191cf93697a70644f25c838e9b5.jpg', 'assets/d9da907ef1ea3471bc35739ef30d7178.jpg',
@@ -355,6 +374,7 @@ class Component extends DCLogic {
         industry: { es: 'Real Estate', en: 'Real Estate' },
         categories: { es: 'Identidad visual, Manual de marca, Diseño editorial, Web', en: 'Visual Identity, Brand Guidelines, Editorial Design, Web' },
         year: '2026',
+        info: { es: { client: 'Inmobiliaria que acompaña a sus clientes en la compra, venta y alquiler de propiedades.', challenge: 'Construir confianza en decisiones importantes y diferenciarse en un mercado saturado de mensajes parecidos.', solution: 'Una identidad sobria y precisa, con monograma propio y un tono cálido color hueso. Un manual de marca y piezas editoriales, digitales y de vía pública bajo una idea rectora: «Clarity before every signature».' }, en: { client: 'A real estate agency that guides its clients through buying, selling and renting property.', challenge: 'Building trust around big decisions and standing out in a market saturated with similar messages.', solution: 'A sober, precise identity with its own monogram and a warm bone tone, plus brand guidelines and editorial, digital and outdoor pieces under one guiding idea: “Clarity before every signature”.' } },
         images: [
           'assets/39f778c340b6be418e2e43a68a3b2cf8.jpg', 'assets/d631bc388a63aff4b3840bbd5ef699af.jpg', 'assets/02c8b35ac2fc86cc0c86638746e62dde.jpg',
           'assets/9839d1989c347977cd3fa3d8fe278f5a.jpg', 'assets/f6fcafffcd827cf4052deafefc06e41b.jpg', 'assets/5c0a955caa2ce8fdacbf06b259126e24.jpg', 'assets/45d786ad5a6d4e7bdfb964ffcdeea4da.jpg',
@@ -371,6 +391,7 @@ class Component extends DCLogic {
         industry: { es: 'Real Estate', en: 'Real Estate' },
         categories: { es: 'Identidad visual, Diseño editorial, Redes sociales', en: 'Visual Identity, Editorial Design, Social Media' },
         year: '2025',
+        info: { es: { client: 'Desarrollo residencial en Villa del Parque, Buenos Aires, sobre la calle Lascano.', challenge: 'Presentar un edificio en preventa como un refugio urbano y comunicar unidades, amenities y entorno con claridad para cada comprador.', solution: 'Una identidad elegante en azul profundo y un sistema editorial que recorre el brochure comercial, la presentación web, el cerco de obra y las redes con un mismo lenguaje.' }, en: { client: 'A residential development in Villa del Parque, Buenos Aires, on Lascano street.', challenge: 'Presenting a pre-sale building as an urban refuge, and communicating units, amenities and surroundings clearly to every buyer.', solution: 'An elegant deep-blue identity and an editorial system that runs through the sales brochure, the web presentation, the construction hoarding and social media with one shared language.' } },
         images: [
           'assets/ac02eb51452a8c1500cd11462ba563f1.jpg', 'assets/ed142d987abd83269b0674c3a1eddcc9.jpg', 'assets/194084a8038130182dba7dd3138baf53.jpg', 'assets/19093bccebd4e0378c620f0f8db07023.jpg', 'assets/864d5d905c9e2bf721f46361a40ddc3b.jpg', 'assets/e689f2f1caf0c6d234b57614eb806b23.jpg',
           'assets/af17d3daf356357aa13476b9c075f329.jpg', 'assets/5e5e686e742bf3c4da2751a21a765cfd.jpg', 'assets/f05e064beed4ba3d1390d2df7ab6c60d.jpg', 'assets/78e90baa70ba73b7cd4d1e9a44caa9e5.webp', 'assets/4deafc690be7cabba39c50181b70b7d5.jpg',
@@ -383,6 +404,7 @@ class Component extends DCLogic {
         industry: { es: 'Beauty & Skincare', en: 'Beauty & Skincare' },
         categories: { es: 'Estrategia de marca, Identidad visual, Packaging, Web', en: 'Brand Strategy, Visual Identity, Packaging, Web' },
         year: '2026',
+        info: { es: { client: 'Marca de cuidado de la piel que entiende la rutina diaria como un momento de bienestar.', challenge: 'Entrar en una categoría muy competida con una voz propia, que transmita cuidado y eficacia sin caer en los clichés de la cosmética.', solution: 'Estrategia e identidad de marca suaves y contemporáneas, con una paleta salvia, un packaging pensado como ritual y una web que acompaña la experiencia.' }, en: { client: 'A skincare brand that sees the daily routine as a moment of wellbeing.', challenge: 'Entering a highly competitive category with its own voice, conveying care and efficacy without falling into beauty clichés.', solution: 'A soft, contemporary brand strategy and identity, with a sage palette, packaging designed as a ritual and a website that supports the experience.' } },
         images: [
           'assets/0beeb945efd8edc1a9e3f45e021a0b9e.jpg', 'assets/712e210118a0549bc2e41d07086c496d.jpg', 'assets/5d825ad229a5ed7940411ec2a7772c81.jpg', 'assets/d169cd5e71b0e0c8525b4e422f97b299.jpg', 'assets/fb2a7b5669b395bb55917e26a854762a.jpg',
           'assets/9d2e42b2134cc89602f7228acfe0a516.jpg', 'assets/9bf3c7c1093193e72a100aaa194c2e52.jpg', 'assets/9f1dd95a64502dcdfce64b7df9e76ba4.jpg', 'assets/f07bc746802aff4fc75ac2551dae9bc2.jpg',
@@ -399,6 +421,7 @@ class Component extends DCLogic {
         industry: { es: 'Real Estate', en: 'Real Estate' },
         categories: { es: 'Estrategia de marca, Identidad visual, Diseño editorial, Campañas de marca', en: 'Brand Strategy, Visual Identity, Editorial Design, Brand Campaign' },
         year: '2022',
+        info: { es: { client: 'Desarrollo inmobiliario residencial con terrazas, orientado a un comprador que valora el espacio y el aire libre.', challenge: 'Construir una marca con personalidad propia desde cero y sostenerla en todas las etapas de comercialización.', solution: 'Estrategia de marca, identidad visual con su sistema tipográfico animado, piezas editoriales y una campaña que pone en primer plano la vida en las terrazas.' }, en: { client: 'A residential development with terraces, aimed at buyers who value space and outdoor living.', challenge: 'Building a brand with its own personality from scratch and sustaining it across every stage of sales.', solution: 'Brand strategy, a visual identity with its animated typographic system, editorial pieces and a campaign that puts terrace living front and centre.' } },
         images: [
           'assets/a3524a0bddbe845f3f573028084073fb.jpg', 'assets/cef81cf7429fe52f9feae8b10cb7f6ba.jpg', 'assets/2cc152da1afa1c22550a3074cf72cd8f.jpg',
           'assets/18244269d9e262da0ed0780eaaa63ddb.jpg', 'assets/6945fc71396646132675e09882b8b0b2.jpg', 'assets/9114c7ef3ead3b8412791510c9b969a6.jpg', 'assets/42da96dbfcaf791746741d1122a76e5d.jpg',
@@ -417,6 +440,7 @@ class Component extends DCLogic {
         industry: { es: 'Wellness', en: 'Wellness' },
         categories: { es: 'Estrategia de marca, Identidad visual, Señalética, Redes sociales', en: 'Brand Strategy, Visual Identity, Signage, Social Media' },
         year: '2025',
+        info: { es: { client: 'Estudio de bienestar y movimiento, guiado por su fundadora y una filosofía de cuidado consciente del cuerpo.', challenge: 'Traducir una experiencia íntima y sensorial en una marca reconocible, coherente en el espacio físico y en lo digital.', solution: 'Una identidad cálida en tonos oliva, con manifiesto, señalética, objetos de marca —mats, botellas, totes— y piezas para redes que extienden la experiencia fuera del estudio.' }, en: { client: 'A wellness and movement studio, led by its founder and a philosophy of mindful body care.', challenge: 'Translating an intimate, sensory experience into a recognisable brand, consistent across the physical space and digital channels.', solution: 'A warm, olive-toned identity with a manifesto, signage, branded objects —mats, bottles, totes— and social pieces that extend the experience beyond the studio.' } },
         images: [
           'assets/32e348763d767fcdbc13ceec5a964804.jpg', 'assets/1a09dfe3dd142e83210342f6f707e098.jpg', 'assets/e229f2f70f653684e80dddc7da3fb8ed.jpg', 'assets/a9d508890232c99534708df2d156b03c.jpg', 'assets/ca28e8ce9f8f6e8969fcd29fa1134dbf.jpg',
           'assets/6f295e5e5aacb4e887ecdc477e5c6480.jpg', 'assets/366c0e779a01a5057937745cc6d2137d.jpg', 'assets/5bfd8bf43e303af71bbc79c767a5be98.jpg', 'assets/d771654e3c30dfea3e10dbb105447b32.jpg',
@@ -431,6 +455,7 @@ class Component extends DCLogic {
         industry: { es: 'Interiorismo', en: 'Interior Design' },
         categories: { es: 'Identidad visual, Diseño editorial, Web', en: 'Visual Identity, Editorial Design, Web' },
         year: '2026',
+        info: { es: { client: 'Estudio de diseño de mobiliario e interiorismo.', challenge: 'Comunicar el oficio y la materialidad de cada pieza con la misma calidad que tienen los muebles.', solution: 'Una identidad visual sobria, una revista impresa que presenta la colección y una landing que traslada esa experiencia al mundo digital.' }, en: { client: 'A furniture design and interiors studio.', challenge: 'Communicating the craft and materiality of each piece with the same quality as the furniture itself.', solution: 'A restrained visual identity, a printed magazine presenting the collection, and a landing page that brings that experience online.' } },
         images: [
           'assets/4b62aaadefa8ad0b9d44a9948bea1234.jpg', 'assets/c46c63f21ecf6cf08209dce6e3f81e4f.jpg', 'assets/248e75c81beb3bc783fba2f8796b95ca.jpg',
           'assets/fa51dcdfee064f499e7e724a8d0e2a8c.webp', 'assets/34a8e298d3775e5e746430d46e12d76f.jpg', 'assets/c0f6a06ce7d9e48b41c7bccead39572f.webp'
@@ -441,6 +466,7 @@ class Component extends DCLogic {
         industry: { es: 'Mobiliario artesanal', en: 'Handmade Furniture' },
         categories: { es: 'Rebranding, Identidad visual, Diseño editorial', en: 'Rebranding, Visual Identity, Editorial Design' },
         year: '2021',
+        info: { es: { client: 'Taller de mobiliario artesanal con una larga trayectoria.', challenge: 'Actualizar una marca con historia sin perder lo que la hacía reconocible y querida.', solution: 'Un rebranding que conserva el escudo y lo vuelve más familiar, legible, moderno y flexible, aplicado a papelería, tarjetas y piezas editoriales.' }, en: { client: 'A handmade furniture workshop with a long history.', challenge: 'Updating a brand with heritage without losing what made it recognisable and loved.', solution: 'A rebrand that keeps the shield and makes it more familiar, legible, modern and flexible, applied to stationery, cards and editorial pieces.' } },
         images: [
           'assets/864903cee1e5df5bc74a7cf42b3c7740.jpg', 'assets/a77c7492aca20f2acb4a7e22cc973879.jpg', 'assets/dd0e093773c52392c6a1671b21a8ae34.jpg', 'assets/490c4634ea70fb4b9bec8b9caa357029.jpg',
           'assets/8d4fbf3ac547a7935482bf43a24b6492.jpg', 'assets/767efcf92cd97f31c4a204c94855444c.jpg', 'assets/03e989d167543d140029ce7e7aec13fc.jpg', 'assets/99f0e59fe8d3e414b060d26ef23dd6f0.jpg',
@@ -456,6 +482,7 @@ class Component extends DCLogic {
         industry: { es: 'Sector público', en: 'Public Sector' },
         categories: { es: 'Rebranding, Identidad visual, Señalética', en: 'Rebranding, Visual Identity, Signage' },
         year: '2023',
+        info: { es: { client: 'La institución que produce los billetes, pasaportes y documentos oficiales del país.', challenge: 'Renovar la imagen de una institución pública histórica para que se lea contemporánea, confiable y federal en cada punto de contacto.', solution: 'Un rebranding con nuevo sistema de color y tipografía, aplicado a documentos nacionales, una serie de billetes inspirada en ocho regiones, papelería, señalética y presencia digital.' }, en: { client: 'The institution that produces the country’s banknotes, passports and official documents.', challenge: 'Renewing the image of a historic public institution so it reads as contemporary, trustworthy and federal at every touchpoint.', solution: 'A rebrand with a new colour and type system, applied to national documents, a banknote series inspired by eight regions, stationery, signage and digital presence.' } },
         images: [
           'assets/12635eba1491de5efa19dc2b543bfb69.jpg',
           'assets/8093c9e22c663f6bfa29ebd27c18c16a.jpg',
@@ -495,6 +522,7 @@ class Component extends DCLogic {
         industry: { es: 'Arte contemporáneo', en: 'Contemporary Art' },
         categories: { es: 'Proyecto curatorial, Diseño editorial', en: 'Curatorial Project, Editorial Design' },
         year: '2020',
+        info: { es: { client: 'Proyecto curatorial y editorial de arte contemporáneo.', challenge: 'Llevar a un objeto impreso una reflexión sobre la mirada, el recorrido y la ilusión de la perspectiva.', solution: 'Un cuaderno anillado que se recorre como un paseo de flâneur: ritmo de páginas, imagen y texto pensados para que la lectura sea parte de la obra.' }, en: { client: 'A curatorial and editorial contemporary art project.', challenge: 'Turning a reflection on looking, wandering and the illusion of perspective into a printed object.', solution: 'A ring-bound notebook to be browsed like a flâneur’s stroll: page rhythm, image and text designed so that reading becomes part of the work.' } },
         images: [
           'assets/01d21df2080268368d9db990179e9e9e.jpg',
           'assets/3ea81644d38f8ea67169ee4396be1956.jpg',
@@ -510,6 +538,7 @@ class Component extends DCLogic {
         industry: { es: 'Cultura y ciencia', en: 'Culture & Science' },
         categories: { es: 'Rebranding, Identidad visual, Diseño editorial', en: 'Rebranding, Visual Identity, Editorial Design' },
         year: '2023',
+        info: { es: { client: 'El planetario de la Ciudad de Buenos Aires, un ícono cultural y científico.', challenge: 'Renovar la identidad de un edificio emblemático y acercarlo a nuevas audiencias sin perder su carácter.', solution: 'Un rebranding construido a partir de puntos que evocan estrellas y constelaciones, con una paleta amarilla, celeste y negra aplicada a piezas editoriales, redes y merchandising.' }, en: { client: 'The Buenos Aires City planetarium, a cultural and scientific icon.', challenge: 'Renewing the identity of an emblematic building and bringing it closer to new audiences without losing its character.', solution: 'A rebrand built from dots that evoke stars and constellations, with a yellow, light blue and black palette applied to editorial pieces, social media and merchandise.' } },
         images: [
           'assets/b9a64e96c25ce1bd977b66493b55dd22.webp',
           'assets/1e9314962ba1b4d4bbc587853c561d3d.jpg',
@@ -545,6 +574,7 @@ class Component extends DCLogic {
     var projects = data.map(function (d, i) {
       var count = d.images.length;
       var cur = slides[i] || 0;
+      var infoOn = self.state.info === i;
       var stripOf = function (e) {
         var a = e && e.currentTarget && e.currentTarget.closest ? e.currentTarget.closest('article') : null;
         return a ? a.querySelector('.strip') : null;
@@ -587,6 +617,17 @@ class Component extends DCLogic {
         hasYear: !!d.year,
         images: d.images.map(function (src, k) { var v = /^video:/.test(src); var s = v ? src.slice(6) : src; return { src: s, isVideo: v, isImg: !v, alt: d.title + ' — ' + t.image + ' ' + (k + 1), loading: k < 3 ? 'eager' : 'lazy' }; }),
         counter: (cur + 1) + '/' + count,
+        code3: num,
+        info: (function () { var o = d.info ? d.info[lang] : { client: '', challenge: '', solution: '' }; return { client: nb(o.client), challenge: nb(o.challenge), solution: nb(o.solution) }; })(),
+        infoOp: infoOn ? '1' : '0',
+        infoTr: infoOn ? 'translateY(0)' : 'translateY(8px)',
+        infoVis: infoOn ? 'visible' : 'hidden',
+        infoAria: infoOn ? 'true' : 'false',
+        infoSign: infoOn ? '−' : '+',
+        showInfo: function (e) { if (e && e.pointerType && e.pointerType !== 'mouse') return; clearTimeout(self._infoT); if (self.state.info !== i) self.setState({ info: i }); },
+        hideInfo: function (e) { if (e && e.pointerType && e.pointerType !== 'mouse') return; clearTimeout(self._infoT); self._infoT = setTimeout(function () { if (self.state.info === i) self.setState({ info: null }); }, 220); },
+        toggleInfo: function () { clearTimeout(self._infoT); self.setState({ info: self.state.info === i ? null : i }); },
+        closeInfo: function () { clearTimeout(self._infoT); self.setState({ info: null }); },
         showPrev: cur > 0,
         onScroll: onScroll,
         next: function (e) { go(e, 1); },

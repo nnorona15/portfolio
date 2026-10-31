@@ -32,7 +32,7 @@ function val(str, scope) {
   return str.replace(ANY, (_, e) => { const v = lookup(e, scope); return v == null ? '' : String(v); });
 }
 
-const EVENTS = { onclick: 'onClick', onscroll: 'onScroll', onchange: 'onChange', onsubmit: 'onSubmit', oninput: 'onInput' };
+const EVENTS = { onclick: 'onClick', onscroll: 'onScroll', onchange: 'onChange', onsubmit: 'onSubmit', oninput: 'onInput', onpointerenter: 'onPointerEnter', onpointerleave: 'onPointerLeave' };
 const BOOL = { autoplay: 'autoPlay', muted: 'muted', loop: 'loop', playsinline: 'playsInline' };
 
 function toVNodes(node, scope, out) {
