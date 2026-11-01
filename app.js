@@ -1,13 +1,6 @@
 import { h, render, Fragment } from './vendor/preact.js';
 
-class DCLogic {
-  constructor(props) { this.props = props || {}; this.state = {}; }
-  setState(patch) { Object.assign(this.state, typeof patch === 'function' ? patch(this.state) : patch); schedule(); }
-}
-window.DCLogic = DCLogic;
-
-const src = document.getElementById('dc-logic').textContent;
-const Component = new Function('DCLogic', src + '\nreturn Component;')(DCLogic);
+const Component = window.Component;
 const comp = new Component({});
 
 const tpl = document.getElementById('tpl').content;
@@ -74,6 +67,7 @@ function toVNodes(node, scope, out) {
 function kids(node, scope, out) { for (const c of node.childNodes) toVNodes(c, scope, out); }
 
 let queued = false;
+window.__dcSchedule = schedule;
 function schedule() { if (queued) return; queued = true; requestAnimationFrame(() => { queued = false; draw(); }); }
 function draw() {
   const scope = comp.renderVals();
