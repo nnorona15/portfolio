@@ -268,10 +268,13 @@ class Component extends DCLogic {
   constructor(props) {
     super(props);
     this.state = { view: 'home', lang: 'es', slides: {} };
+    try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
   }
   go(view) {
-    this.setState({ view: view });
+    this.setState({ view: view, slides: {}, info: null });
     try { window.scrollTo(0, 0); } catch (e) {}
+    var reset = function () { try { document.querySelectorAll('.strip').forEach(function (el) { el.scrollLeft = 0; }); } catch (e) {} };
+    try { requestAnimationFrame(reset); setTimeout(reset, 60); setTimeout(reset, 300); } catch (e) {}
   }
   renderVals() {
     var self = this;
