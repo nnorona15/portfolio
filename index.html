@@ -45,6 +45,9 @@ textarea.fld{resize:vertical}
 .ic-cols{display:flex;flex-direction:column;gap:16px}
 .ic-lab{font-family:'DM Mono',ui-monospace,monospace;font-size:11.5px;line-height:14px;text-transform:uppercase;letter-spacing:0.06em;color:rgba(255,255,255,0.7);margin-bottom:6px}
 .ic-sec p{margin:0;font-size:15px;line-height:21px;color:rgba(255,255,255,0.92);text-wrap:pretty}
+.ab1d{white-space:pre}
+.ab1m{display:none}
+.about .txt{width:min-content;max-width:none !important}
 @media (max-width:1000px){.svc5{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .logo .cut{display:inline-block;overflow:hidden;white-space:nowrap;vertical-align:top;transition:max-width .6s cubic-bezier(.65,0,.35,1)}
 .logo .w{display:inline-flex;align-items:flex-start}
@@ -78,6 +81,9 @@ footer.grid3{padding:16px 16px calc(28px + env(safe-area-inset-bottom)) !importa
 .info .count{grid-column:2}
 .code{text-align:left}
 .lead{font-size:30px !important}
+.ab1d{display:none}
+.ab1m{display:block}
+.about .txt{width:auto}
 .lead,.about .txt p{white-space:pre-line}
 .strip{height:calc((100vw - 32px) * 0.88 * 0.5625) !important}
 .strip img{height:100% !important;width:auto !important;max-width:none !important;background:transparent !important}
@@ -172,7 +178,8 @@ header.grid3{font-size:11.5px !important;column-gap:12px !important}
 <section style="padding: 56px 0 32px; display: flex; flex-direction: column; gap: 64px">
 <div class="about">
 <div class="txt" style="display: flex; flex-direction: column; gap: 20px; max-width: 720px; align-self: stretch">
-<p style="margin: 0; text-wrap: pretty">{{t.about1}}</p>
+<p class="ab1d" style="margin: 0">{{t.about1d}}</p>
+<p class="ab1m" style="margin: 0; text-wrap: pretty">{{t.about1}}</p>
 <p style="margin: 0; text-wrap: pretty; color: #767676">{{t.about2}}</p>
 <div style="display: flex; flex-wrap: wrap; gap: 0 28px; margin-top: auto">
 <a href="{{t.cv}}" target="_blank" rel="noopener" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-family: 'DM Mono', ui-monospace, monospace; font-size: 14px; line-height: 20px; text-transform: uppercase; letter-spacing: 0.02em; border-bottom: 0.5px solid #1e1e1e">CV <span aria-hidden="true">↗</span></a>
@@ -277,6 +284,7 @@ class Component extends DCLogic {
         lead: 'Diseñadora con más de 5 años de experiencia\n—\u00a0enfocada en desarrollar identidades y experiencias visuales que combinan concepto, sensibilidad y una mirada contemporánea.',
         industry: 'Rubro', categories: 'Categorías', more: 'Info', client: 'Cliente', challenge: 'Desafío', solution: 'Solución', year: 'Año', image: 'Imagen',
         nextImg: 'Imagen siguiente', prevImg: 'Imagen anterior',
+        about1d: 'Mi nombre es Noelia Orona. Diseñadora con base en Argentina,\ncon más de 5 años de experiencia — enfocada en desarrollar\nidentidades y experiencias visuales que combinan concepto,\nsensibilidad y una mirada contemporánea.',
         about1: 'Mi nombre es Noelia Orona. Diseñadora\u00a0con\u00a0base en Argentina, con más de 5 años de experiencia\n—\u00a0enfocada en desarrollar identidades\u00a0y\u00a0experiencias visuales que combinan concepto, sensibilidad y una mirada contemporánea.', about2: 'Trabajo desde un enfoque estratégico y conceptual, combinando investigación, criterio visual y comprensión de los objetivos de comunicación para desarrollar soluciones claras, coherentes y relevantes.',
         photoAlt: 'Retrato de Noelia Orona',
         cv: 'https://acrobat.adobe.com/id/urn:aaid:sc:US:c2e7ccbb-954d-4a64-97fe-b3108166860c',
@@ -305,6 +313,7 @@ class Component extends DCLogic {
         lead: 'Designer with over 5 years of experience\n—\u00a0focused on developing identities and visual experiences that combine concept, sensitivity and a contemporary eye.',
         industry: 'Industry', categories: 'Categories', more: 'Info', client: 'Client', challenge: 'Challenge', solution: 'Solution', year: 'Year', image: 'Image',
         nextImg: 'Next image', prevImg: 'Previous image',
+        about1d: 'My name is Noelia Orona. Designer based in Argentina,\nwith over 5 years of experience — focused on developing\nidentities and visual experiences that combine concept,\nsensitivity and a contemporary eye.',
         about1: 'My name is Noelia Orona. Designer\u00a0based\u00a0in Argentina, with over 5 years of experience\n—\u00a0focused on developing identities and visual experiences that combine concept, sensitivity and a contemporary eye.', about2: 'I work from a strategic and conceptual approach, combining research, visual judgment and an understanding of communication goals to develop clear, coherent and relevant solutions.',
         photoAlt: 'Portrait of Noelia Orona',
         cv: 'https://acrobat.adobe.com/id/urn:aaid:sc:US:bfeac706-d468-4eec-b025-e274fec7cfed',
