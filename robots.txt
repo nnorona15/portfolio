@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://portfolio-xi-nine-9729o53ui3.vercel.app/sitemap.xml
+Sitemap: https://noeliaorona.com/sitemap.xml
