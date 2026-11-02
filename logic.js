@@ -446,8 +446,8 @@ class Component extends DCLogic {
           'assets/8af601721591cee23b9d9f2b8796a3c6.webp',
           'assets/ef0f67f06159a06acf49db38f82163a9.webp',
           'assets/19179de8ba907c3bf9a98d01d0257a40.webp',
-          'assets/ab133057b959e0aff84c9e518fd5d949.webp',
           'assets/91acd97c3deedcc0dbf5e9e529f40b4c.webp',
+          'assets/ab133057b959e0aff84c9e518fd5d949.webp',
           'assets/01d21df2080268368d9db990179e9e9e.webp'
         ]
       },
