@@ -356,8 +356,8 @@ class Component extends DCLogic {
         year: '2021',
         info: { es: { client: 'Estudio de diseño de muebles e interiorismo', challenge: 'Mostrar la colección con el mismo cuidado que tiene cada mueble, en papel y en pantalla.', solution: 'Se diseñó una revista impresa para presentar las piezas y una landing que lleva esa misma experiencia a la web.' }, en: { client: 'A furniture design and interiors studio', challenge: 'Showing the collection with the same care that goes into each piece, both in print and on screen.', solution: 'We designed a printed magazine to present the pieces and a landing page that brings the same experience online.' } },
         images: [
-          'assets/4b62aaadefa8ad0b9d44a9948bea1234.webp', 'assets/c46c63f21ecf6cf08209dce6e3f81e4f.webp', 'assets/248e75c81beb3bc783fba2f8796b95ca.webp',
-          'assets/fa51dcdfee064f499e7e724a8d0e2a8c.webp', 'assets/34a8e298d3775e5e746430d46e12d76f.webp', 'assets/c0f6a06ce7d9e48b41c7bccead39572f.webp'
+          'assets/dd8d9b3c33a64bd0ae5b3f647cb88b01.webp', 'assets/c46c63f21ecf6cf08209dce6e3f81e4f.webp', 'assets/74220d9e56a81ccf1170b8f803b63a2c.webp',
+          'assets/4eeb53ea2da7e7d772a28cfa44f6a367.webp', 'assets/34a8e298d3775e5e746430d46e12d76f.webp', 'assets/755eb7678e7e97842e3f2cceba055638.webp'
         ]
       },
       {
