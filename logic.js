@@ -275,7 +275,7 @@ class Component extends DCLogic {
       {
         title: 'Ananta Terraces',
         industry: { es: 'Real Estate', en: 'Real Estate' },
-        categories: { es: 'Estrategia de marca,\nIdentidad visual, Diseño editorial, Campañas de marca', en: 'Brand Strategy,\nVisual Identity, Editorial Design, Brand Campaign' },
+        categories: { es: 'Estrategia de marca,\nIdentidad visual, Diseño editorial,\nCampañas de marca', en: 'Brand Strategy,\nVisual Identity, Editorial Design,\nBrand Campaign' },
         year: '2022',
         info: { es: { client: 'Desarrollo residencial con terrazas', challenge: 'El proyecto necesitaba una marca propia que lo acompañara en toda la comercialización, desde el lanzamiento hasta la venta.', solution: 'Se definió la estrategia y la identidad, con un sistema tipográfico que también se animó. Se diseñaron las piezas editoriales y una campaña centrada en la vida en las terrazas.' }, en: { client: 'A residential development with terraces', challenge: 'The project needed its own brand to carry it through the whole sales process, from launch to sale.', solution: 'We defined the strategy and the identity, with a typographic system that was also animated. We designed the editorial pieces and a campaign focused on life on the terraces.' } },
         images: [
