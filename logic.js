@@ -1,12 +1,50 @@
 /* generado por tools/build.py */
+var DC_ROUTES = { home: '/', info: '/sobre-mi', work: '/proyectos', contact: '/contacto', privacy: '/privacidad' };
+var DC_TITLES = { home: 'Noelia Orona — Diseñadora', info: 'Sobre mí — Noelia Orona', work: 'Proyectos — Noelia Orona', contact: 'Contacto — Noelia Orona', privacy: 'Privacidad — Noelia Orona' };
+var dcSlug = function (s) { return String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); };
+var dcRoute = function () {
+  var path = '/';
+  try { path = (location.pathname || '/').replace(/\.html$/, '').replace(/\/+$/, '') || '/'; } catch (e) {}
+  if (path.indexOf('/proyectos/') === 0) return { view: 'work', slug: path.slice(11) };
+  for (var k in DC_ROUTES) if (DC_ROUTES[k] === path) return { view: k, slug: null };
+  return { view: 'home', slug: null };
+};
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { view: 'home', lang: 'es', slides: {} };
+    var r = dcRoute();
+    var lang = 'es';
+    try { if (/[?&]lang=en\b/.test(location.search)) lang = 'en'; } catch (e) {}
+    this.state = { view: r.view, lang: lang, slides: {} };
     try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+    var self = this;
+    try {
+      window.addEventListener('popstate', function () {
+        var r2 = dcRoute();
+        self.setState({ view: r2.view, slides: {}, info: null });
+        try { document.title = DC_TITLES[r2.view] || DC_TITLES.home; } catch (e) {}
+        if (r2.slug) self.focus(r2.slug); else { try { window.scrollTo(0, 0); } catch (e) {} }
+      });
+    } catch (e) {}
+    if (r.slug) this.focus(r.slug);
+  }
+  focus(slug) {
+    var tries = 0;
+    var run = function () {
+      var el = document.getElementById(slug);
+      if (el) { try { el.scrollIntoView({ block: 'start' }); } catch (e) {} return; }
+      if (++tries < 20) setTimeout(run, 50);
+    };
+    setTimeout(run, 30);
+  }
+  nav(e) {
+    if (e && (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button === 1)) return false;
+    if (e && e.preventDefault) e.preventDefault();
+    return true;
   }
   go(view) {
     this.setState({ view: view, slides: {}, info: null });
+    try { var path = DC_ROUTES[view] || '/'; if (location.pathname !== path) history.pushState(null, '', path); document.title = DC_TITLES[view] || DC_TITLES.home; } catch (e) {}
     try { window.scrollTo(0, 0); } catch (e) {}
     var reset = function () { try { document.querySelectorAll('.strip').forEach(function (el) { el.scrollLeft = 0; }); } catch (e) {} };
     try { requestAnimationFrame(reset); setTimeout(reset, 60); setTimeout(reset, 300); } catch (e) {}
@@ -44,7 +82,9 @@ class Component extends DCLogic {
         send: 'Enviar consulta', sendHint: 'Completá los campos con * para enviar.', other: 'Otro',
         mailSubject: 'Consulta', mailBudget: 'Presupuesto', mailFrom: 'De',
         social: 'Redes', city: 'Bs As, Argentina',
-        projectName: '[Nombre del proyecto]'
+        projectName: '[Nombre del proyecto]',
+        privacyLink: 'Privacidad', privacyTitle: 'Privacidad', privacyDate: 'Última actualización: noviembre de 2026',
+        privacy: [{ h: "Responsable", p: "Este sitio pertenece a Noelia Orona, diseñadora con base en Buenos Aires, Argentina. Para cualquier consulta sobre tus datos, escribime a nnorona15@gmail.com." }, { h: "Cookies y seguimiento", p: "El sitio funciona sin cookies, sin herramientas de análisis y sin servicios de terceros que sigan tu navegación. Por eso no vas a ver ningún aviso de cookies." }, { h: "Datos que me enviás", p: "El formulario de contacto abre tu propio programa de correo. Los datos que escribas viajan solo en el mail que decidas enviar, y los uso únicamente para responder tu consulta." }, { h: "Alojamiento", p: "El sitio está alojado en Vercel, que registra datos técnicos básicos de cada visita, como la dirección IP, para mantenerlo seguro y funcionando." }, { h: "Tus derechos", p: "Podés pedir acceder, corregir o eliminar tus datos en cualquier momento escribiendo a nnorona15@gmail.com. El titular de los datos personales tiene la facultad de ejercer el derecho de acceso a los mismos en forma gratuita a intervalos no inferiores a seis meses, salvo que se acredite un interés legítimo al efecto conforme lo establecido en el artículo 14, inciso 3 de la Ley Nº 25.326. La Agencia de Acceso a la Información Pública, en su carácter de Órgano de Control de la Ley Nº 25.326, tiene la atribución de atender las denuncias y reclamos que interpongan quienes resulten afectados en sus derechos por incumplimiento de las normas vigentes en materia de protección de datos personales." }, { h: "Propiedad intelectual", p: "Los diseños, textos e imágenes de este sitio son de autoría de Noelia Orona. Las marcas de cada proyecto pertenecen a sus respectivos clientes y se muestran como parte de mi portfolio. Si querés usar algún contenido, escribime." }]
       },
       en: {
         navLabel: 'Main', info: 'About me', work: 'Projects', contact: 'Contact',
@@ -73,13 +113,15 @@ class Component extends DCLogic {
         send: 'Send inquiry', sendHint: 'Fill in the fields marked * to send.', other: 'Other',
         mailSubject: 'Inquiry', mailBudget: 'Budget', mailFrom: 'From',
         social: 'Social', city: 'Bs As, Argentina',
-        projectName: '[Project name]'
+        projectName: '[Project name]',
+        privacyLink: 'Privacy', privacyTitle: 'Privacy', privacyDate: 'Last updated: November 2026',
+        privacy: [{ h: "Who is responsible", p: "This site belongs to Noelia Orona, a designer based in Buenos Aires, Argentina. For any question about your data, write to nnorona15@gmail.com." }, { h: "Cookies and tracking", p: "The site works without cookies, analytics tools or third-party services that follow your browsing. That's why you won't see a cookie notice." }, { h: "Data you send me", p: "The contact form opens your own email app. What you write travels only in the email you choose to send, and I use it solely to answer your inquiry." }, { h: "Hosting", p: "The site is hosted on Vercel, which records basic technical data from each visit, such as the IP address, to keep it secure and running." }, { h: "Your rights", p: "You can ask to access, correct or delete your data at any time by writing to nnorona15@gmail.com. Under Argentina's Personal Data Protection Law No. 25,326, you may exercise your right of access free of charge at intervals of no less than six months, unless a legitimate interest is shown (article 14, section 3). The Agency for Access to Public Information, as the supervisory authority of Law No. 25,326, handles complaints from anyone whose rights under data protection rules have been affected." }, { h: "Intellectual property", p: "The designs, texts and images on this site are by Noelia Orona. Each project's brands belong to their respective clients and are shown as part of my portfolio. If you'd like to use any content, write to me." }]
       }
     };
     var nb = function (s) { return typeof s === 'string' ? s.replace(/(^|[\s\u00a0(])([A-Za-zÁÉÍÓÚáéíóú]) /g, '$1$2\u00a0') : s; };
     var nb3 = function (s) { return typeof s === 'string' ? s.replace(/(^|[\s\u00a0(«—])([A-Za-zÁÉÍÓÚáéíóúÑñ]{1,3}) /g, '$1$2\u00a0').replace(/(^|[\s\u00a0(«—])([A-Za-zÁÉÍÓÚáéíóúÑñ]{1,3}) /g, '$1$2\u00a0') : s; };
     Object.keys(T[lang]).forEach(function (k) { T[lang][k] = nb(T[lang][k]); });
-    var t = Object.assign({}, T[lang], { servicesAll: T[lang].servicesList.map(function (g) { return Object.assign({}, g, { nn: '0' + g.n }); }) });
+    var t = Object.assign({}, T[lang], { privacy: T[lang].privacy.map(function (b) { return { h: b.h, p: nb3(b.p) }; }), servicesAll: T[lang].servicesList.map(function (g) { return Object.assign({}, g, { nn: '0' + g.n }); }) });
     var f = this.state.form || { name: '', email: '', type: '', budget: '', message: '' };
     var setF = function (key) {
       return function (e) {
@@ -487,11 +529,14 @@ class Component extends DCLogic {
       return {
         code: num.slice(-2),
         title: d.title,
+        slug: dcSlug(d.title),
+        href: '/proyectos/' + dcSlug(d.title),
+        openLink: function (e) { if (!self.nav(e)) return; try { history.pushState(null, '', '/proyectos/' + dcSlug(d.title)); document.title = d.title + ' — Noelia Orona'; } catch (er) {} self.focus(dcSlug(d.title)); },
         industry: d.industry[lang],
         categories: d.categories[lang],
         year: d.year,
         hasYear: !!d.year,
-        images: d.images.map(function (src, k) { var v = /^video:/.test(src); var s = v ? src.slice(6) : src; return { src: s, isVideo: v, isImg: !v, alt: d.title + ' — ' + t.image + ' ' + (k + 1), loading: k < 3 ? 'eager' : 'lazy' }; }),
+        images: d.images.map(function (src, k) { var v = /^video:/.test(src); var s = v ? src.slice(6) : src; return { src: s, isVideo: v, isImg: !v, alt: d.title + ' — ' + d.categories[lang].split(',')[0] + ' — ' + t.image + ' ' + (k + 1) + (es ? ' de ' : ' of ') + count, loading: k < 3 ? 'eager' : 'lazy' }; }),
         counter: (cur + 1) + '/' + count,
         code3: num,
         info: (function () { var o = d.info ? d.info[lang] : { client: '', challenge: '', solution: '' }; return { client: nb3(o.client), challenge: nb3(o.challenge), solution: nb3(o.solution) }; })(),
@@ -550,10 +595,13 @@ class Component extends DCLogic {
       infoDeco: view === 'info' ? 'line-through' : 'none',
       workDeco: view === 'work' ? 'line-through' : 'none',
       contactDeco: view === 'contact' ? 'line-through' : 'none',
-      goHome: function () { self.go('home'); },
-      goWork: function () { self.go('work'); },
-      goInfo: function () { self.go('info'); },
-      goContact: function () { self.go('contact'); },
+      goHome: function (e) { if (self.nav(e)) self.go('home'); },
+      goWork: function (e) { if (self.nav(e)) self.go('work'); },
+      goInfo: function (e) { if (self.nav(e)) self.go('info'); },
+      goContact: function (e) { if (self.nav(e)) self.go('contact'); },
+      goPrivacy: function (e) { if (self.nav(e)) self.go('privacy'); },
+      isPrivacy: view === 'privacy',
+      privacyDeco: view === 'privacy' ? 'line-through' : 'none',
       projects: projects
     };
   }

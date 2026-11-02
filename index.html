@@ -2,12 +2,16 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
+<base href="/">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Noelia Orona — Diseñadora</title>
 <meta name="description" content="Noelia Orona — Diseñadora con base en Argentina. Identidad visual, diseño editorial, packaging y web.">
 <meta property="og:title" content="Noelia Orona — Diseñadora">
 <meta property="og:description" content="Identidades y experiencias visuales con concepto, sensibilidad y una mirada contemporánea.">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Noelia Orona">
+<meta property="og:locale" content="es_AR">
+<meta property="og:locale:alternate" content="en_US">
 <meta property="og:url" content="https://noeliaorona.com/">
 <meta property="og:image" content="https://noeliaorona.com/og.jpg?v=5">
 <meta property="og:image:width" content="2400">
@@ -64,6 +68,11 @@ textarea.fld{resize:vertical}
 .ab1d{white-space:pre}
 .ab1m{display:none}
 .about .txt{width:min-content;max-width:none !important}
+.priv{max-width:760px;display:flex;flex-direction:column;gap:36px}
+.priv h2{margin:0 0 10px;font-family:'DM Mono',ui-monospace,monospace;font-size:14px;line-height:20px;font-weight:400;text-transform:uppercase;letter-spacing:0.02em}
+.priv p{margin:0;font-size:18px;line-height:27px;text-wrap:pretty}
+.priv a{border-bottom:0.5px solid #1e1e1e}
+.ptitle{text-decoration:none}.ptitle:hover{opacity:.6}
 @media (max-width:1000px){.svc5{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .logo .cut{display:inline-block;overflow:hidden;white-space:nowrap;vertical-align:top;transition:max-width .6s cubic-bezier(.65,0,.35,1)}
 .logo .w{display:inline-flex;align-items:flex-start}
@@ -77,13 +86,14 @@ header.grid3>div:first-child{grid-column:1 / -1}
 header.grid3{font-size:12.5px !important;letter-spacing:0 !important;column-gap:14px !important}
 header.grid3>nav{justify-self:start;flex-direction:column;align-items:flex-start;gap:6px !important;white-space:nowrap}
 header.grid3>nav>span{display:none !important}
-header.grid3>nav>button:not(:last-child)::after{content:','}
+header.grid3>nav>a:not(:last-child)::after{content:','}
 header.grid3>div:last-child{align-self:start}
 header.grid3>div:last-child>div{gap:5px !important}
 header.grid3>div:last-child{justify-content:flex-end !important}
 .desk{display:none !important}
 .mob{display:inline !important}
 main{padding:0 16px !important}
+main article{scroll-margin-top:156px !important}
 .home-sec{padding-top:64px !important}
 footer.grid3{padding:16px 16px calc(28px + env(safe-area-inset-bottom)) !important}
 .logo{font-size:17px !important}
@@ -122,14 +132,14 @@ header.grid3{font-size:11.5px !important;column-gap:12px !important}
 <div lang="{{lang}}" style="min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; box-sizing: border-box; background: #ffffff; color: #1e1e1e; font-family: 'Inter Tight', 'Helvetica Neue', Arial, sans-serif; font-size: 21px; line-height: 29px">
 
 <header class="grid3" style="position: sticky; top: 0; z-index: 5; padding: 12px; align-items: center; font-family: 'DM Mono', ui-monospace, monospace; font-size: 14px; line-height: 20px; background: rgba(255,255,255,0.88); backdrop-filter: blur(8px); text-transform: uppercase; letter-spacing: 0.02em">
-<div><button type="button" class="logo" onClick="{{goHome}}" aria-label="Noelia Orona" style="display: inline-flex; align-items: flex-start; gap: {{logoGap}}; font-family: 'Inter Tight', 'Helvetica Neue', Arial, sans-serif; font-weight: 400; font-size: 22px; line-height: 26px; text-transform: none; letter-spacing: -0.01em; white-space: nowrap; transition: gap .6s cubic-bezier(.65,0,.35,1)"><span class="w" aria-hidden="true"><span>N</span><span class="cut" style="max-width: {{restW}}">oelia</span><span class="cut" style="max-width: {{dotW}}">.</span></span><span class="w" aria-hidden="true"><span>O</span><span class="cut" style="max-width: {{restW}}">rona</span><span class="cut" style="max-width: {{dotW}}">.</span></span></button></div>
+<div><a href="/" class="logo" onClick="{{goHome}}" aria-label="Noelia Orona" style="display: inline-flex; align-items: flex-start; gap: {{logoGap}}; font-family: 'Inter Tight', 'Helvetica Neue', Arial, sans-serif; font-weight: 400; font-size: 22px; line-height: 26px; text-transform: none; letter-spacing: -0.01em; white-space: nowrap; transition: gap .6s cubic-bezier(.65,0,.35,1)"><span class="w" aria-hidden="true"><span>N</span><span class="cut" style="max-width: {{restW}}">oelia</span><span class="cut" style="max-width: {{dotW}}">.</span></span><span class="w" aria-hidden="true"><span>O</span><span class="cut" style="max-width: {{restW}}">rona</span><span class="cut" style="max-width: {{dotW}}">.</span></span></a></div>
 <nav aria-label="{{t.navLabel}}" style="display: flex; flex-wrap: wrap; gap: 4px">
-<button type="button" onClick="{{goInfo}}" style="text-decoration: {{infoDeco}}">{{t.info}}</button><span aria-hidden="true">,</span>
-<button type="button" onClick="{{goWork}}" style="text-decoration: {{workDeco}}">{{t.work}}</button><span class="mob" aria-hidden="true" style="display: none">,</span>
-<button type="button" class="mob" onClick="{{goContact}}" style="display: none; text-decoration: {{contactDeco}}">{{t.contact}}</button>
+<a href="/sobre-mi" onClick="{{goInfo}}" style="text-decoration: {{infoDeco}}">{{t.info}}</a><span aria-hidden="true">,</span>
+<a href="/proyectos" onClick="{{goWork}}" style="text-decoration: {{workDeco}}">{{t.work}}</a><span class="mob" aria-hidden="true" style="display: none">,</span>
+<a href="/contacto" class="mob" onClick="{{goContact}}" style="display: none; text-decoration: {{contactDeco}}">{{t.contact}}</a>
 </nav>
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px">
-<button type="button" class="desk" onClick="{{goContact}}" style="text-decoration: {{contactDeco}}">{{t.contact}}</button>
+<a href="/contacto" class="desk" onClick="{{goContact}}" style="text-decoration: {{contactDeco}}">{{t.contact}}</a>
 <div role="group" aria-label="Idioma / Language" style="display: flex; gap: 6px">
 <button type="button" onClick="{{setEs}}" aria-pressed="{{isEs}}" style="color: {{esColor}}; text-decoration: {{esDeco}}">Español</button>
 <span aria-hidden="true" style="color: #6b6b6b">/</span>
@@ -149,7 +159,7 @@ header.grid3{font-size:11.5px !important;column-gap:12px !important}
 <sc-if value="{{isWork}}" hint-placeholder-val="{{ false }}">
 <section aria-label="{{t.work}}" style="padding: 48px 0 96px; display: flex; flex-direction: column; gap: 72px">
 <sc-for list="{{projects}}" as="p" hint-placeholder-count="3">
-<article style="display: flex; flex-direction: column; gap: 20px">
+<article id="{{p.slug}}" style="display: flex; flex-direction: column; gap: 20px; scroll-margin-top: 72px">
 <div style="position: relative; width: 100%">
 <div class="strip" onScroll="{{p.onScroll}}" tabindex="0" aria-label="{{p.title}}" style="display: flex; gap: 8px; width: 100%; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; height: clamp(240px, 58vh, 620px)">
 <sc-for list="{{p.images}}" as="im" hint-placeholder-count="3">
@@ -175,7 +185,7 @@ header.grid3{font-size:11.5px !important;column-gap:12px !important}
 <div class="info" style="font-size: 21px">
 <div class="code" style="font-family: 'DM Mono', ui-monospace, monospace; font-size: 14px; line-height: 23px; color: #767676">{{p.code}}</div>
 <div style="font-family: 'Inter Tight', 'Helvetica Neue', Arial, sans-serif; font-weight: 700; font-size: 20px; line-height: 1.12; text-transform: uppercase">
-<div>{{p.title}}</div>
+<div><a href="{{p.href}}" class="ptitle" onClick="{{p.openLink}}">{{p.title}}</a></div>
 <div>{{t.industry}}: {{p.industry}}</div>
 <div>{{t.categories}}: {{p.categories}}</div>
 <sc-if value="{{p.hasYear}}" hint-placeholder-val="{{ false }}"><div>{{t.year}}: {{p.year}}</div></sc-if>
@@ -270,10 +280,22 @@ header.grid3{font-size:11.5px !important;column-gap:12px !important}
 </section>
 </sc-if>
 
+<sc-if value="{{isPrivacy}}" hint-placeholder-val="{{ false }}">
+<section style="padding: 56px 0 96px">
+<div class="priv">
+<h1 class="lead" style="margin: 0; font-family: 'Inter Tight', 'Helvetica Neue', Arial, sans-serif; font-weight: 700; font-size: 44px; line-height: 1.08; letter-spacing: -0.01em">{{t.privacyTitle}}</h1>
+<sc-for list="{{t.privacy}}" as="b" hint-placeholder-count="3">
+<div><h2>{{b.h}}</h2><p>{{b.p}}</p></div>
+</sc-for>
+<p style="font-family: 'DM Mono', ui-monospace, monospace; font-size: 14px; line-height: 20px; color: #767676">{{t.privacyDate}}</p>
+</div>
+</section>
+</sc-if>
+
 </main>
 
 <footer class="grid3" style="padding: 12px; font-family: 'DM Mono', ui-monospace, monospace; font-size: 14px; line-height: 20px; text-transform: uppercase; letter-spacing: 0.02em">
-<div style="display: flex; flex-wrap: wrap; gap: 0 20px"><span>Bs As, Argentina</span><span>©2026</span></div>
+<div style="display: flex; flex-wrap: wrap; gap: 0 20px"><span>Bs As, Argentina</span><span>©2026</span><a href="/privacidad" onClick="{{goPrivacy}}" style="text-decoration: {{privacyDeco}}">{{t.privacyLink}}</a></div>
 <div></div>
 <div><a href="mailto:nnorona15@gmail.com">→ nnorona15@gmail.com</a></div>
 </footer>
