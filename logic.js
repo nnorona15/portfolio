@@ -139,7 +139,7 @@ class Component extends DCLogic {
       {
         title: 'Selypan Collection',
         industry: { es: 'Hospitality', en: 'Hospitality' },
-        categories: { es: 'Estrategia de marca, Identidad visual, Packaging', en: 'Brand Strategy, Visual Identity, Packaging' },
+        categories: { es: 'Estrategia de marca,\nIdentidad visual, Packaging', en: 'Brand Strategy,\nVisual Identity, Packaging' },
         year: '2026',
         info: { es: { client: 'Hotel boutique en Mazatlán, México', challenge: 'El hotel arrancaba de cero. Había que construir una marca propia, distinta a la de los resorts de la zona, que transmitiera un lujo tranquilo y cercano.', solution: 'Primero se definió la estrategia de marca. A partir de ahí se diseñó un símbolo que junta mar y tierra, una paleta de piedra y oliva y una tipografía fina. Después se aplicó a todo lo que toca el huésped: amenities, packaging, papelería, señalética, menús y web.' }, en: { client: 'A boutique hotel in Mazatlán, Mexico', challenge: 'The hotel was starting from scratch. It needed a brand of its own, distinct from the resorts in the area, conveying a quiet, warm kind of luxury.', solution: 'We started by defining the brand strategy. From there we designed a symbol that brings sea and land together, a stone and olive palette and a light typeface, and applied it to everything guests touch: amenities, packaging, stationery, signage, menus and the website.' } },
         images: [
@@ -174,7 +174,7 @@ class Component extends DCLogic {
       {
         title: 'SPM Renting',
         industry: { es: 'Mobility', en: 'Mobility' },
-        categories: { es: 'Estrategia de marca, Identidad visual, Web', en: 'Brand Strategy, Visual Identity, Web' },
+        categories: { es: 'Estrategia de marca,\nIdentidad visual, Web', en: 'Brand Strategy,\nVisual Identity, Web' },
         year: '2025',
         info: { es: { client: 'Empresa que alquila autos a conductores de Uber, DiDi y Cabify', challenge: 'Es un rubro con mucha informalidad. La marca tenía que dar confianza y hablarle claro a gente que usa el auto para trabajar.', solution: 'Se armó un símbolo con cuatro flechas que se cruzan, a partir de la idea de encuentro y movimiento, con petróleo y naranja como colores principales. Se aplicó en vía pública, flyers, uniformes y web, con mensajes cortos y directos.' }, en: { client: 'A company that rents cars to Uber, DiDi and Cabify drivers', challenge: 'It is a very informal market. The brand had to build trust and speak plainly to people who use the car to make a living.', solution: 'We built a symbol from four arrows that cross, based on the idea of meeting and movement, with petrol and orange as the main colours. It was applied to outdoor ads, flyers, uniforms and the website, with short, direct messages.' } },
         images: [
@@ -206,7 +206,7 @@ class Component extends DCLogic {
       {
         title: 'Roffo Realty',
         industry: { es: 'Real Estate', en: 'Real Estate' },
-        categories: { es: 'Estrategia de marca, Identidad visual, Web', en: 'Brand Strategy, Visual Identity, Web' },
+        categories: { es: 'Estrategia de marca,\nIdentidad visual, Web', en: 'Brand Strategy,\nVisual Identity, Web' },
         year: '2026',
         info: { es: { client: 'Firma de asesoramiento estratégico en real estate en Argentina, fundada por Jano Roffo. Ofrece tasaciones, asesoramiento en compra y venta, y soporte contable, legal e impositivo', challenge: 'Roffo asesora a quienes compran, venden o invierten en propiedades. La marca tenía que reflejar ese rol de consultor y verse como una firma seria y personal, con una imagen que funcione en Argentina y también afuera.', solution: 'La identidad se armó alrededor del apellido del fundador: un monograma a partir de la R, una paleta de negro, blanco y plata, y fotografía de Buenos Aires y la Patagonia. El tono se resumió en "Clarity before every signature" y se aplicó en papelería, presentación comercial, redes, vía pública y web.' }, en: { client: 'A strategic real estate advisory firm in Argentina, founded by Jano Roffo. It offers valuations, purchase and sale advisory, and accounting, legal and tax support', challenge: 'Roffo advises people who buy, sell or invest in property. The brand had to reflect that consulting role and come across as a serious, personal firm, with an image that works both in Argentina and abroad.', solution: 'The identity was built around the founder’s surname: a monogram based on the R, a black, white and silver palette, and photography of Buenos Aires and Patagonia. The tone was summed up in "Clarity before every signature" and applied to stationery, the sales deck, social media, outdoor and the website.' } },
         images: [
@@ -223,7 +223,7 @@ class Component extends DCLogic {
       {
         title: 'Itahyé',
         industry: { es: 'Real Estate', en: 'Real Estate' },
-        categories: { es: 'Identidad visual, Presentación comercial, Redes sociales', en: 'Visual Identity, Sales Presentation, Social Media' },
+        categories: { es: 'Identidad visual,\nPresentación comercial, Redes sociales', en: 'Visual Identity,\nSales Presentation, Social Media' },
         year: '2025',
         info: { es: { client: 'Edificio residencial en preventa en Villa del Parque, Buenos Aires', challenge: 'Había que vender un edificio en preventa. El comprador tenía que entender las unidades, los amenities y el barrio de un vistazo.', solution: 'Se creó la identidad en azul y se diseñó la presentación comercial completa, página por página. Con el mismo lenguaje se resolvieron el cerco de obra y las redes.' }, en: { client: 'A residential building on pre-sale in Villa del Parque, Buenos Aires', challenge: 'The goal was to sell a building on pre-sale. Buyers had to understand the units, the amenities and the neighbourhood at a glance.', solution: 'We created a blue identity and designed the full sales presentation, page by page. The construction hoarding and social media followed the same language.' } },
         images: [
@@ -236,7 +236,7 @@ class Component extends DCLogic {
       {
         title: 'Nuvéa',
         industry: { es: 'Beauty & Skincare', en: 'Beauty & Skincare' },
-        categories: { es: 'Estrategia de marca, Identidad visual, Packaging', en: 'Brand Strategy, Visual Identity, Packaging' },
+        categories: { es: 'Estrategia de marca,\nIdentidad visual, Packaging', en: 'Brand Strategy,\nVisual Identity, Packaging' },
         year: '2025',
         info: { es: { client: 'Marca nueva de cuidado de la piel', challenge: 'Entrar en una categoría con muchísima oferta con una voz propia y reconocible.', solution: 'Se trabajó la estrategia y una identidad simple, con una paleta salvia y una tipografía limpia. El packaging se pensó como parte de la rutina diaria y se completó con piezas para redes.' }, en: { client: 'A new skincare brand', challenge: 'Entering a crowded category with its own recognisable voice.', solution: 'We worked on the strategy and a simple identity, with a sage palette and a clean typeface. The packaging was designed as part of the daily routine and completed with social media pieces.' } },
         images: [
@@ -275,7 +275,7 @@ class Component extends DCLogic {
       {
         title: 'Ananta Terraces',
         industry: { es: 'Real Estate', en: 'Real Estate' },
-        categories: { es: 'Estrategia de marca, Identidad visual, Diseño editorial, Campañas de marca', en: 'Brand Strategy, Visual Identity, Editorial Design, Brand Campaign' },
+        categories: { es: 'Estrategia de marca,\nIdentidad visual, Diseño editorial, Campañas de marca', en: 'Brand Strategy,\nVisual Identity, Editorial Design, Brand Campaign' },
         year: '2022',
         info: { es: { client: 'Desarrollo residencial con terrazas', challenge: 'El proyecto necesitaba una marca propia que lo acompañara en toda la comercialización, desde el lanzamiento hasta la venta.', solution: 'Se definió la estrategia y la identidad, con un sistema tipográfico que también se animó. Se diseñaron las piezas editoriales y una campaña centrada en la vida en las terrazas.' }, en: { client: 'A residential development with terraces', challenge: 'The project needed its own brand to carry it through the whole sales process, from launch to sale.', solution: 'We defined the strategy and the identity, with a typographic system that was also animated. We designed the editorial pieces and a campaign focused on life on the terraces.' } },
         images: [
@@ -322,7 +322,7 @@ class Component extends DCLogic {
       {
         title: 'Estudio Athina',
         industry: { es: 'Wellness', en: 'Wellness' },
-        categories: { es: 'Estrategia de marca, Identidad visual, Redes sociales', en: 'Brand Strategy, Visual Identity, Social Media' },
+        categories: { es: 'Estrategia de marca,\nIdentidad visual, Redes sociales', en: 'Brand Strategy,\nVisual Identity, Social Media' },
         year: '2026',
         info: { es: { client: 'Estudio de yoga, stretching y movilidad', challenge: 'La fundadora quería que la marca transmitiera lo mismo que se vive en una clase: calma y cuidado del cuerpo.', solution: 'Se escribió un manifiesto y a partir de ahí se diseñó una identidad cálida en tonos oliva. Se aplicó en afiches, tarjetas, objetos del estudio como mats, botellas y totes, y en redes.' }, en: { client: 'A yoga, stretching and mobility studio', challenge: 'The founder wanted the brand to feel like a class does: calm, with care for the body.', solution: 'We wrote a manifesto and from there designed a warm, olive-toned identity. It was applied to posters, cards, studio objects like mats, bottles and totes, and social media.' } },
         images: [
@@ -398,7 +398,7 @@ class Component extends DCLogic {
       {
         title: 'Casa de Moneda Argentina',
         industry: { es: 'Sector público', en: 'Public Sector' },
-        categories: { es: 'Rebranding, Identidad visual, Diseño editorial, Señalética', en: 'Rebranding, Visual Identity, Editorial Design, Signage' },
+        categories: { es: 'Rebranding, Identidad visual,\nDiseño editorial, Señalética', en: 'Rebranding, Visual Identity,\nEditorial Design, Signage' },
         year: '2023',
         info: { es: { client: 'Proyecto de tesis: rebranding de Casa de Moneda, la sociedad del Estado que produce los billetes, pasaportes y documentos de identidad de la Argentina', challenge: 'Llevar una institución histórica a un lenguaje contemporáneo y unificar bajo una misma identidad todo lo que produce: billetes, documentos y comunicación.', solution: 'El isotipo se construyó a partir de la letra M y las columnas del edificio, como puente entre tradición e innovación. Se definió un sistema de color y tipografía y, con el concepto de apreciación del territorio, se diseñó una serie de billetes basada en ocho regiones del país, el pasaporte, el DNI, papelería, señalética y piezas editoriales.' }, en: { client: 'Thesis project: a rebrand for Casa de Moneda, the state-owned company that produces Argentina’s banknotes, passports and identity documents', challenge: 'Bringing a historic institution into a contemporary visual language and uniting everything it produces under one identity: banknotes, documents and communication.', solution: 'The symbol was built from the letter M and the columns of the building, bridging tradition and innovation. We defined a colour and type system and, around the idea of appreciating the territory, designed a banknote series based on eight regions of the country, the passport, the ID card, stationery, signage and editorial pieces.' } },
         images: [
@@ -438,7 +438,7 @@ class Component extends DCLogic {
       {
         title: 'Ensayo Perspectiva Ilusoria',
         industry: { es: 'Arte contemporáneo', en: 'Contemporary Art' },
-        categories: { es: 'Proyecto curatorial, Diseño editorial', en: 'Curatorial Project, Editorial Design' },
+        categories: { es: 'Proyecto curatorial,\nDiseño editorial', en: 'Curatorial Project,\nEditorial Design' },
         year: '2020',
         info: { es: { client: 'Proyecto curatorial de arte contemporáneo', challenge: 'Llevar a un objeto impreso una reflexión sobre la mirada y la perspectiva.', solution: 'Se diseñó un cuaderno anillado para recorrer como un paseo, alternando imagen y texto para que la lectura también forme parte de la obra.' }, en: { client: 'A contemporary art curatorial project', challenge: 'Turning a reflection on looking and perspective into a printed object.', solution: 'We designed a ring-bound notebook meant to be browsed like a walk, alternating image and text so that reading becomes part of the work.' } },
         images: [
@@ -454,7 +454,7 @@ class Component extends DCLogic {
       {
         title: 'Planetario Galileo Galilei',
         industry: { es: 'Cultura y ciencia', en: 'Culture & Science' },
-        categories: { es: 'Rebranding, Identidad visual, Piezas impresas, Redes sociales', en: 'Rebranding, Visual Identity, Print Collateral, Social Media' },
+        categories: { es: 'Rebranding, Identidad visual,\nPiezas impresas, Redes sociales', en: 'Rebranding, Visual Identity,\nPrint Collateral, Social Media' },
         year: '2023',
         info: { es: { client: 'El planetario de la Ciudad de Buenos Aires', challenge: 'Renovar la identidad del Planetario Galileo Galilei, mantener su esencia y acercarlo a un público más joven.', solution: 'Un sistema construido a partir de puntos: las estrellas y las constelaciones, las formas circulares de la fachada del planetario y las personas que se conectan en él. Con amarillo, celeste y negro, se aplicó en folletos, postales, redes y merchandising.' }, en: { client: 'The Buenos Aires City planetarium', challenge: 'Renewing the identity of the Galileo Galilei Planetarium, keeping its essence and bringing it closer to a younger audience.', solution: 'A system built from dots: stars and constellations, the circular shapes of the planetarium\'s façade and the people who connect there. In yellow, light blue and black, applied to brochures, postcards, social media and merchandise.' } },
         images: [
