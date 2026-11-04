@@ -20,6 +20,8 @@
 <meta name="twitter:image" content="https://noeliaorona.com/og/spm-renting.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://noeliaorona.com/#web","url":"https://noeliaorona.com/","name":"Noelia Orona","inLanguage":["es","en"],"publisher":{"@id":"https://noeliaorona.com/#noelia"}},{"@type":"Person","@id":"https://noeliaorona.com/#noelia","name":"Noelia Orona","url":"https://noeliaorona.com/","jobTitle":"Diseñadora","description":"Diseñadora con base en Argentina. Identidad visual, diseño editorial, packaging y web.","image":"https://noeliaorona.com/assets/cc865a6dbeadcb29cce391f507c17738.webp","email":"mailto:nnorona15@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Buenos Aires","addressCountry":"AR"},"sameAs":["https://www.linkedin.com/in/noelia-orona-093a19181/","https://www.behance.net/noeliaorona"]},{"@type":"CreativeWork","@id":"https://noeliaorona.com/proyectos/spm-renting#work","url":"https://noeliaorona.com/proyectos/spm-renting","name":"SPM Renting","headline":"SPM Renting","description":"Es un rubro con mucha informalidad. La marca tenía que dar confianza y hablarle claro a gente que usa el auto para trabajar. Se armó un símbolo con cuatro flechas que se cruzan, a partir de la idea de encuentro y movimiento, con petróleo y naranja como colores principales. Se aplicó en vía pública, flyers, uniformes y web, con mensajes cortos y directos.","abstract":"Empresa que alquila autos a conductores de Uber, DiDi y Cabify","genre":"Mobility","keywords":"Estrategia de marca, Identidad visual, Web","inLanguage":"es","image":"https://noeliaorona.com/og/spm-renting.jpg","creator":{"@id":"https://noeliaorona.com/#noelia"},"author":{"@id":"https://noeliaorona.com/#noelia"},"isPartOf":{"@id":"https://noeliaorona.com/proyectos#page"},"workTranslation":{"@type":"CreativeWork","inLanguage":"en","name":"SPM Renting","description":"It is a very informal market. The brand had to build trust and speak plainly to people who use the car to make a living. We built a symbol from four arrows that cross, based on the idea of meeting and movement, with petrol and orange as the main colours. It was applied to outdoor ads, flyers, uniforms and the website, with short, direct messages."},"dateCreated":"2025"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Noelia Orona","item":"https://noeliaorona.com/"},{"@type":"ListItem","position":2,"name":"Proyectos","item":"https://noeliaorona.com/proyectos"},{"@type":"ListItem","position":3,"name":"SPM Renting","item":"https://noeliaorona.com/proyectos/spm-renting"}]}]}</script>
+<meta name="robots" content="index, follow, noimageindex, noai, noimageai">
+<meta name="pinterest" content="nopin">
 <link rel="canonical" href="https://noeliaorona.com/proyectos/spm-renting">
 <meta name="theme-color" content="#ffffff">
 <meta name="color-scheme" content="light">
@@ -42,6 +44,8 @@ button:hover{opacity:.6}
 .strip{scrollbar-width:none;-ms-overflow-style:none}
 .strip::-webkit-scrollbar{display:none}
 .strip:focus-visible{outline:1px solid #1e1e1e;outline-offset:4px}
+.wm{position:absolute;left:12px;bottom:10px;z-index:3;pointer-events:none;font-family:'DM Mono',ui-monospace,monospace;font-size:11px;line-height:14px;letter-spacing:0.08em;text-transform:uppercase;color:#fff;mix-blend-mode:difference;opacity:.6;user-select:none}
+@media print{img,video,.strip,.wm{visibility:hidden !important}}
 .strip img,.strip video,img{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-user-drag:none}
 .arr{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,0.92);color:#1e1e1e;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',ui-monospace,monospace;font-size:18px;box-shadow:0 1px 8px rgba(0,0,0,0.12);transition:transform .2s ease,opacity .2s ease}
 .arr:hover{opacity:1;transform:translateY(-50%) scale(1.06)}
@@ -163,6 +167,7 @@ header.grid3{font-size:11.5px !important;column-gap:12px !important}
 <sc-for list="{{projects}}" as="p" hint-placeholder-count="3">
 <article id="{{p.slug}}" style="display: flex; flex-direction: column; gap: 20px; scroll-margin-top: 72px">
 <div style="position: relative; width: 100%">
+<span class="wm" aria-hidden="true">© Noelia Orona</span>
 <div class="strip" onScroll="{{p.onScroll}}" tabindex="0" aria-label="{{p.title}}" style="display: flex; gap: 8px; width: 100%; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; height: clamp(240px, 58vh, 620px)">
 <sc-for list="{{p.images}}" as="im" hint-placeholder-count="3">
 <sc-if value="{{im.isImg}}" hint-placeholder-val="{{ true }}"><img src="{{im.src}}" alt="{{im.alt}}" loading="{{im.loading}}" draggable="false" style="display: block; flex: 0 0 auto; height: 100%; width: auto; object-fit: contain; background: #efefef; scroll-snap-align: start"></sc-if>
@@ -214,7 +219,7 @@ header.grid3{font-size:11.5px !important;column-gap:12px !important}
 <a href="https://www.linkedin.com/in/noelia-orona-093a19181/" target="_blank" rel="noopener" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-family: 'DM Mono', ui-monospace, monospace; font-size: 14px; line-height: 20px; text-transform: uppercase; letter-spacing: 0.02em; border-bottom: 0.5px solid #1e1e1e">LinkedIn <span aria-hidden="true">↗</span></a>
 </div>
 </div>
-<img src="assets/cc865a6dbeadcb29cce391f507c17738.webp" alt="{{t.photoAlt}}" style="display: block; width: 100%; max-width: 340px; height: auto; aspect-ratio: 1276 / 1233; object-fit: cover">
+<div style="position: relative; width: 100%; max-width: 340px"><img src="assets/cc865a6dbeadcb29cce391f507c17738.webp" alt="{{t.photoAlt}}" style="display: block; width: 100%; max-width: 340px; height: auto; aspect-ratio: 1276 / 1233; object-fit: cover"><span class="wm" aria-hidden="true">© Noelia Orona</span></div>
 </div>
 <div style="display: flex; flex-direction: column; gap: 16px; padding-top: 16px; border-top: 0.5px solid #b5b5b5">
 <div style="font-family: 'DM Mono', ui-monospace, monospace; font-size: 14px; line-height: 20px; text-transform: uppercase; letter-spacing: 0.02em">{{t.services}}</div>
