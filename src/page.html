@@ -42,6 +42,7 @@ button:hover{opacity:.6}
 .strip{scrollbar-width:none;-ms-overflow-style:none}
 .strip::-webkit-scrollbar{display:none}
 .strip:focus-visible{outline:1px solid #1e1e1e;outline-offset:4px}
+.strip img,.strip video,img{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-user-drag:none}
 .arr{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,0.92);color:#1e1e1e;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',ui-monospace,monospace;font-size:18px;box-shadow:0 1px 8px rgba(0,0,0,0.12);transition:transform .2s ease,opacity .2s ease}
 .arr:hover{opacity:1;transform:translateY(-50%) scale(1.06)}
 .lead{text-wrap:pretty}
@@ -331,6 +332,11 @@ class Component extends DCLogic {
       });
     } catch (e) {}
     if (r.slug) this.focus(r.slug);
+    try {
+      var guard = function (e) { var t = e.target; if (t && (t.tagName === 'IMG' || t.tagName === 'VIDEO')) e.preventDefault(); };
+      document.addEventListener('contextmenu', guard);
+      document.addEventListener('dragstart', guard);
+    } catch (e) {}
   }
   focus(slug) {
     var tries = 0;

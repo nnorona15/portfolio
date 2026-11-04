@@ -27,6 +27,11 @@ class Component extends DCLogic {
       });
     } catch (e) {}
     if (r.slug) this.focus(r.slug);
+    try {
+      var guard = function (e) { var t = e.target; if (t && (t.tagName === 'IMG' || t.tagName === 'VIDEO')) e.preventDefault(); };
+      document.addEventListener('contextmenu', guard);
+      document.addEventListener('dragstart', guard);
+    } catch (e) {}
   }
   focus(slug) {
     var tries = 0;
