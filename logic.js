@@ -1,6 +1,6 @@
 /* generado por tools/build.py */
 var DC_ROUTES = { home: '/', info: '/sobre-mi', work: '/proyectos', contact: '/contacto', privacy: '/privacidad' };
-var DC_TITLES = { home: 'Noelia Orona — Diseñadora', info: 'Sobre mí — Noelia Orona', work: 'Proyectos — Noelia Orona', contact: 'Contacto — Noelia Orona', privacy: 'Privacidad — Noelia Orona' };
+var DC_TITLES = { home: 'Noelia Orona — Diseño y comunicación', info: 'Sobre mí — Noelia Orona', work: 'Proyectos — Noelia Orona', contact: 'Contacto — Noelia Orona', privacy: 'Privacidad — Noelia Orona' };
 var dcSlug = function (s) { return String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); };
 var dcRoute = function () {
   var path = '/';
