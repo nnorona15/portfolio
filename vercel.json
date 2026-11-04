@@ -91,15 +91,6 @@
           "value": "noindex, noimageindex, noai, noimageai"
         }
       ]
-    },
-    {
-      "source": "/(.*)\\.pdf",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex"
-        }
-      ]
     }
   ]
 }
